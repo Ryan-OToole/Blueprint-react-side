@@ -3,6 +3,8 @@ import logo from './logo.svg';
 import './App.css';
 import LoginForm from './LoginForm';
 import RegistrationForm from './RegistrationForm'
+import Sidebar from './Sidebar'
+import PoemDetails from './PoemDetails'
 
 class App extends Component {
   render() {
@@ -15,8 +17,10 @@ class App extends Component {
         <p className="App-intro">
           This will be a project soon
         </p>
-        <LoginForm />
-        <RegistrationForm /> 
+        <LoginForm /><br/>
+        <RegistrationForm /><br/><br/><br/>
+        <Sidebar />
+        <PoemDetails />
       </div>
     );
   }
