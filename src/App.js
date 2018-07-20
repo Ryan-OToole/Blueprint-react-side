@@ -5,18 +5,14 @@ import LoginForm from './LoginForm';
 import RegistrationForm from './RegistrationForm'
 import Sidebar from './Sidebar'
 import PoemDetails from './PoemDetails'
+import { connect } from "react-redux"
 
 class App extends Component {
   render() {
+    console.log(this.props.alive)
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          This will be a project soon
-        </p>
+        <br/>
         <LoginForm /><br/>
         <RegistrationForm /><br/><br/><br/>
         <Sidebar />
@@ -26,4 +22,10 @@ class App extends Component {
   }
 }
 
-export default App;
+function mapStateToProps(state){
+  return {
+    alive: state.alive
+  }
+}
+
+export default connect(mapStateToProps)(App)
