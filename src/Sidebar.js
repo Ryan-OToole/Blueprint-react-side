@@ -5,26 +5,19 @@ import { connect } from 'react-redux';
 
 class Sidebar extends Component {
 
-  // componentDidMount() {
-  //   fetch('http://localhost:3000/poems')
-  //     .then( r=>r.json() )
-  //     .then( poemsObj=> {
-  //       this.props.poemList.push(poemsObj)
-  //     })
-  // }
-  //
-
-
-  mapPoems = () => {
-  return this.props.poemList.map( poem => {
-    return <h3> {poem.title} </h3>
-    })
+  componentDidMount() {
+    fetch('http://localhost:3000/poems')
+      .then( r=>r.json() )
+      .then( poemsArray=> {
+        this.props.generateSidebar(poemsArray)
+      })
   }
 
-
-
-
-
+  mapPoems = () => {
+    return this.props.poemList.map( poem => {
+      return <h3> {poem.title} </h3>
+    })
+  }
 
   render() {
     return (
@@ -41,4 +34,12 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(Sidebar)
+const mapDispatchToProps = (dispatch) => {
+  return {
+      generateSidebar: (poemsArray) => {
+        dispatch({type: "GENERATE_SIDEBAR", payload: poemsArray})
+      }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Sidebar)

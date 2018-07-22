@@ -18,8 +18,7 @@ class PoemDetails extends Component {
     fetch('http://localhost:3000/poems', config)
       .then( r=>r.json() )
       .then( poem => {
-        console.log("get here poem:", poem)
-        this.props.generateSidebar(poem)
+        this.props.addPostToSidebar(poem)
       })
   }
 
@@ -60,9 +59,10 @@ class PoemDetails extends Component {
       handleChange: (event) => {
         dispatch({type: "TITLE_AND_BODY", payload: event})
       },
-      generateSidebar: (poem) => {
-        dispatch({type: "GENERATE_SIDEBAR", payload: poem})
+      addPostToSidebar: (poem) => {
+        dispatch({type: "POST_TO_SIDEBAR", payload: poem})
       }
+      
     }
   }
 

@@ -14,17 +14,16 @@ const reducer = (state = defaultState, action) => {
       return {...state, alive: false}
     case "TITLE_AND_BODY":
       return {...state, [action.payload.target.name]: action.payload.target.value}
-    case "GENERATE_SIDEBAR":
+    case "POST_TO_SIDEBAR":
       return {...state, poemList: [...state.poemList, action.payload]}
+    case "GENERATE_SIDEBAR":
+      return {...state, poemList: [...state.poemList.concat(action.payload)]}
     default:
       return state
   }
 }
 
-
-
-
-export default reducer
+export default reducer;
 
 
 
