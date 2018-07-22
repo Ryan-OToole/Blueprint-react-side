@@ -4,17 +4,29 @@ import { form } from 'semantic-ui-react';
 
 class PoemDetails extends Component {
 
-  handleChange = (event) => {
-    this.setState({
-      [event.target.id]: event.target.value
-    })
+  handleSubmit = (event) => {
+    event.preventDefault()
+    const config = {
+      method: "POST",
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({
+          title: this.props.title,
+          body: this.props.body,
+          user_id:1
+      })
+    }
+    fetch('http://localhost:3000/poems', config)
+      .then( r=>r.json() )
+      .then( poem => {
+        console.log("get here poem:", poem)
+        this.props.generateSidebar(poem)
+      })
   }
 
   render() {
-    console.log(this.props.title)
     return (
       <div id="poem-details" >
-        <form data-action='create-note'>
+        <form onSubmit={this.handleSubmit}>
             Title:<br/><input id='note-title-input'
              name="title"
              type='text'
@@ -22,38 +34,36 @@ class PoemDetails extends Component {
              onChange={this.props.handleChange}
              value={this.props.title} /><br/>
             Body:<br/><textarea
-            id='note-body-input'
-            name="body"
-            rows="10"
-            cols="50"
-            onChange={this.props.handleChange}
-            value={this.props.body}></textarea><br/>
-            <button
-            type='submit'
-            
-            >Create note</button>
+              id='note-body-input'
+              name="body"
+              rows="10"
+              cols="50"
+              onChange={this.props.handleChange}
+              value={this.props.body}></textarea><br/>
+            <button type='submit'>Create note</button>
         </form>
-
       </div>
     )
   }
-
-
 }
 
-function mapStateToProps(state) {
-  return {
-    title: state.title,
-    body: state.body
-  }
-}
-
-function mapDispatchToProps(dispatch){
-  return {
-    handleChange: (event) => {
-      dispatch({type: "TITLE_AND_BODY", payload: event})
+  function mapStateToProps(state) {
+    return {
+      title: state.title,
+      body: state.body,
+      poemList: state.poemList
     }
   }
-}
+
+  function mapDispatchToProps(dispatch){
+    return {
+      handleChange: (event) => {
+        dispatch({type: "TITLE_AND_BODY", payload: event})
+      },
+      generateSidebar: (poem) => {
+        dispatch({type: "GENERATE_SIDEBAR", payload: poem})
+      }
+    }
+  }
 
 export default connect(mapStateToProps, mapDispatchToProps)(PoemDetails)

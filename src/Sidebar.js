@@ -1,17 +1,44 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
 
 
 class Sidebar extends Component {
 
-  render() {
-    return (
-      <div id="sidebar" >
-        {"hey there"}
-      </div>
-    )
+  // componentDidMount() {
+  //   fetch('http://localhost:3000/poems')
+  //     .then( r=>r.json() )
+  //     .then( poemsObj=> {
+  //       this.props.poemList.push(poemsObj)
+  //     })
+  // }
+  //
+
+
+  mapPoems = () => {
+  return this.props.poemList.map( poem => {
+    return <h3> {poem.title} </h3>
+    })
   }
 
 
+
+
+
+
+  render() {
+    return (
+      <div id="sidebar" >
+        {this.mapPoems()}
+      </div>
+    )
+  }
 }
 
-export default Sidebar
+const mapStateToProps = (state) => {
+  return {
+    poemList: state.poemList
+  }
+}
+
+export default connect(mapStateToProps)(Sidebar)
