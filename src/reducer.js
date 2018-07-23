@@ -1,6 +1,6 @@
 const defaultState = {
   poemList: [],
-  currentPoem: {},
+  currentPoem: null,
   markovState: [],
   title: "",
   body: "",
@@ -18,6 +18,8 @@ const reducer = (state = defaultState, action) => {
       return {...state, poemList: [...state.poemList, action.payload]}
     case "GENERATE_SIDEBAR":
       return {...state, poemList: [...state.poemList.concat(action.payload)]}
+    case "DISPLAY_POEM":
+      return {...state, currentPoem: action.payload}
     default:
       return state
   }

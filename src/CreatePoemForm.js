@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from "react-redux"
 import { form } from 'semantic-ui-react';
 
-class PoemDetails extends Component {
+class CreatePoemForm extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault()
@@ -62,8 +62,8 @@ class PoemDetails extends Component {
       addPostToSidebar: (poem) => {
         dispatch({type: "POST_TO_SIDEBAR", payload: poem})
       }
-      
+
     }
   }
 
-export default connect(mapStateToProps, mapDispatchToProps)(PoemDetails)
+export default connect(mapStateToProps, mapDispatchToProps)(CreatePoemForm)

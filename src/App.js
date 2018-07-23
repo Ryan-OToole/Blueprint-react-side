@@ -3,7 +3,8 @@ import './App.css';
 import LoginForm from './LoginForm';
 import RegistrationForm from './RegistrationForm'
 import Sidebar from './Sidebar'
-import PoemDetails from './PoemDetails'
+import CreatePoemForm from './CreatePoemForm'
+import DisplayPoem from './DisplayPoem'
 import { connect } from "react-redux"
 
 class App extends Component {
@@ -14,7 +15,7 @@ class App extends Component {
         <LoginForm /><br/>
         <RegistrationForm /><br/><br/><br/>
         <Sidebar />
-        <PoemDetails />
+        {this.props.currentPoem === null ? <CreatePoemForm /> : <DisplayPoem />}
       </div>
     );
   }
@@ -22,7 +23,8 @@ class App extends Component {
 
 function mapStateToProps(state){
   return {
-    alive: state.alive
+    alive: state.alive,
+    currentPoem: state.currentPoem
   }
 }
 

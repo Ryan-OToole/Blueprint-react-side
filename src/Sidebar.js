@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-
-
 class Sidebar extends Component {
 
   componentDidMount() {
@@ -15,8 +13,15 @@ class Sidebar extends Component {
 
   mapPoems = () => {
     return this.props.poemList.map( poem => {
-      return <h3> {poem.title} </h3>
+      return <h3 id={poem.id} key={poem.id} onClick={this.handleClick}> {poem.title} </h3>
     })
+  }
+
+  handleClick = (event) => {
+    const clickedPoem = this.props.poemList.find( poem => {
+      return poem.id.toString() === event.target.id
+    })
+    this.props.displayPoem(clickedPoem)
   }
 
   render() {
@@ -38,7 +43,14 @@ const mapDispatchToProps = (dispatch) => {
   return {
       generateSidebar: (poemsArray) => {
         dispatch({type: "GENERATE_SIDEBAR", payload: poemsArray})
-      }
+    },
+      handleClick: (event) => {
+        dispatch({type: "DISPLAY_POEM", payload: event})
+      },
+      displayPoem: (clickedPoem) => {
+        dispatch({type: "DISPLAY_POEM", payload: clickedPoem})
+    }
+
   }
 }
 
