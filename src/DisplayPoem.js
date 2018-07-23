@@ -4,12 +4,11 @@ import { connect } from "react-redux"
 class DisplayPoem extends Component {
 
   state = {
-    clicked: false
+    clicked: null
   }
 
   handleUpdate = (event) => {
     event.preventDefault()
-
     const config = {
         method:'PATCH',
         headers:{'Content-Type':'application/json'},
@@ -19,7 +18,6 @@ class DisplayPoem extends Component {
         })
     }
       const url = `http://localhost:3000/poems/${this.props.currentPoem.id}`
-
       fetch(url,config)
         .then( r=>r.json() )
         .then( poem => {

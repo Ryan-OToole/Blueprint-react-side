@@ -16,6 +16,7 @@ class App extends Component {
         <RegistrationForm /><br/><br/><br/>
         <Sidebar />
         {this.props.currentPoem === null ? null : <DisplayPoem />}
+        { this.props.createOrDisplay ? <CreatePoemForm /> : null}
       </div>
     );
   }
@@ -23,7 +24,8 @@ class App extends Component {
 
 function mapStateToProps(state){
   return {
-    currentPoem: state.currentPoem
+    currentPoem: state.currentPoem,
+    createOrDisplay: state.createOrDisplay
   }
 }
 

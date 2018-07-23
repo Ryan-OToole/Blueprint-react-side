@@ -6,7 +6,7 @@ const defaultState = {
   markovState: [],
   title: "",
   body: "",
-  alive: true
+  createOrDisplay: null
 }
 
 const reducer = (state = defaultState, action) => {
@@ -19,7 +19,7 @@ const reducer = (state = defaultState, action) => {
     case "GENERATE_SIDEBAR":
       return {...state, poemList: [...state.poemList.concat(action.payload)]}
     case "DISPLAY_POEM":
-      return {...state, currentPoem: action.payload, currentPoemTitle: action.payload.title, currentPoemBody: action.payload.body}
+      return {...state, currentPoem: action.payload, currentPoemTitle: action.payload.title, currentPoemBody: action.payload.body, createOrDisplay: false}
     case "UPDATE_POEMLIST":
       return {...state, poemList: action.payload}
     case "RESET_CURRENT_POEM_STATE":
@@ -28,6 +28,8 @@ const reducer = (state = defaultState, action) => {
       return {...state, currentPoem: action.payload}
     case "UPDATE_POEMLIST_AFTER_UPDATE":
       return {...state, poemList: action.payload}
+    case "DISPLAY_CREATE_FORM":
+      return {...state, createOrDisplay: true}
     default:
       return state
   }
