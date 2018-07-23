@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import CreatePoemForm from './CreatePoemForm'
 import { connect } from 'react-redux';
 
 class Sidebar extends Component {
@@ -24,9 +25,16 @@ class Sidebar extends Component {
     this.props.displayPoem(clickedPoem)
   }
 
+  createPoemForm = () => {
+    console.log("hey")
+    // return <CreatePoemForm />
+  }
+
   render() {
     return (
       <div id="sidebar" >
+        <button onClick={this.createPoemForm}>Create Poem</button>
+
         {this.mapPoems()}
       </div>
     )

@@ -9,13 +9,6 @@ class DisplayPoem extends Component {
 
   handleUpdate = (event) => {
     event.preventDefault()
-    const newPoem = this.props.poemList.find( poem => {
-      return poem.id === this.props.currentPoem.id
-    })
-    newPoem.title = this.props.currentPoemTitle
-    newPoem.body = this.props.currentPoemBody
-    this.props.afterUpdateUpdateCurrentPoem(newPoem)
-    this.props.afterUpdateUpdatePoemList(this.props.poemList)
 
     const config = {
         method:'PATCH',
@@ -30,8 +23,10 @@ class DisplayPoem extends Component {
       fetch(url,config)
         .then( r=>r.json() )
         .then( poem => {
-            this.props.addPostToSidebar(poem)
-          })
+          const newPoemList = this.props.poemList.filter( poem => poem.id !== this.props.currentPoem.id)
+          newPoemList.push(poem)
+          this.props.afterUpdateUpdatePoemList(newPoemList)
+        })
         .then( this.setState({clicked: false}) )
   }
 

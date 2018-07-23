@@ -15,7 +15,7 @@ class App extends Component {
         <LoginForm /><br/>
         <RegistrationForm /><br/><br/><br/>
         <Sidebar />
-        {this.props.currentPoem === null ? <CreatePoemForm /> : <DisplayPoem />}
+        {this.props.currentPoem === null ? null : <DisplayPoem />}
       </div>
     );
   }

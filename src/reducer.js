@@ -25,7 +25,7 @@ const reducer = (state = defaultState, action) => {
     case "RESET_CURRENT_POEM_STATE":
       return {...state, currentPoem: null, currentPoemTitle: null, currentPoemBody: null}
     case "UPDATE_AFTER_UPDATE":
-      return {...state, currentPoem: action.payload, currentPoemTitle: action.payload.title, currentPoemBody: action.payload.body}
+      return {...state, currentPoem: action.payload}
     case "UPDATE_POEMLIST_AFTER_UPDATE":
       return {...state, poemList: action.payload}
     default:
