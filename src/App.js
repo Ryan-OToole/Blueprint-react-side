@@ -23,7 +23,6 @@ class App extends Component {
 
 function mapStateToProps(state){
   return {
-    alive: state.alive,
     currentPoem: state.currentPoem
   }
 }

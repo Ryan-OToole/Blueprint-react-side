@@ -1,6 +1,8 @@
 const defaultState = {
   poemList: [],
   currentPoem: null,
+  currentPoemTitle: null,
+  currentPoemBody: null,
   markovState: [],
   title: "",
   body: "",
@@ -10,8 +12,6 @@ const defaultState = {
 const reducer = (state = defaultState, action) => {
 
   switch(action.type) {
-    case "CLICK_EVENT":
-      return {...state, alive: false}
     case "TITLE_AND_BODY":
       return {...state, [action.payload.target.name]: action.payload.target.value}
     case "POST_TO_SIDEBAR":
@@ -19,8 +19,14 @@ const reducer = (state = defaultState, action) => {
     case "GENERATE_SIDEBAR":
       return {...state, poemList: [...state.poemList.concat(action.payload)]}
     case "DISPLAY_POEM":
-      return {...state, currentPoem: action.payload}
+      return {...state, currentPoem: action.payload, currentPoemTitle: action.payload.title, currentPoemBody: action.payload.body}
     case "UPDATE_POEMLIST":
+      return {...state, poemList: action.payload}
+    case "RESET_CURRENT_POEM_STATE":
+      return {...state, currentPoem: null, currentPoemTitle: null, currentPoemBody: null}
+    case "UPDATE_AFTER_UPDATE":
+      return {...state, currentPoem: action.payload, currentPoemTitle: action.payload.title, currentPoemBody: action.payload.body}
+    case "UPDATE_POEMLIST_AFTER_UPDATE":
       return {...state, poemList: action.payload}
     default:
       return state
