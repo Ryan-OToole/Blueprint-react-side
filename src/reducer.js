@@ -20,6 +20,8 @@ const reducer = (state = defaultState, action) => {
       return {...state, poemList: [...state.poemList.concat(action.payload)]}
     case "DISPLAY_POEM":
       return {...state, currentPoem: action.payload}
+    case "UPDATE_POEMLIST":
+      return {...state, poemList: action.payload}
     default:
       return state
   }

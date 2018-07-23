@@ -7,13 +7,8 @@ class DisplayPoem extends Component {
     clicked: false
   }
 
-  handleSubmit = (event) => {
+  handleUpdate = (event) => {
     event.preventDefault()
-  }
-
-
-
-  handleEdit = (event) => {
     const config = {
         method:'PATCH',
         headers:{'Content-Type':'application/json'},
@@ -34,15 +29,30 @@ class DisplayPoem extends Component {
         <h3> {this.props.currentPoem.title} </h3>
         <p> {this.props.currentPoem.body} </p>
         <button onClick={this.renderUpdateForm}> Edit Poem </button>
-        <button> Delete Poem </button>
+        <button onClick={this.deletePoemFromServer}> Delete Poem </button>
       </Fragment>
     )
+  }
+
+  deletePoemFromServer = () => {
+    const newPoemList = Array.from(this.props.poemList).filter( poem => {
+      return poem.id !== this.props.currentPoem.id
+    })
+
+    fetch(`http://localhost:3000/poems/${this.props.currentPoem.id}`, {method:'DELETE'})
+      .then( r=>r.json() )
+      .then(console.log)
+      .then(this.props.updatePoemList(newPoemList))
+
+    // return this.props.poemList.filter( poem => {
+    //   return poem.id != this.props.currentPoem.id
+    // })
   }
 
   renderUpdateForm = () => {
     return (
     <div id="poem-details" >
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={this.handleUpdate}>
           Title:<br/><input id='note-title-input'
            name="title"
            type='text'
@@ -54,7 +64,7 @@ class DisplayPoem extends Component {
             rows="10"
             cols="50"
             value={this.props.currentPoem.body}></textarea><br/>
-          <button type='submit'>Create note</button>
+          <button type='submit'>Update Poem</button>
       </form>
     </div>
     )
@@ -74,10 +84,17 @@ class DisplayPoem extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    currentPoem: state.currentPoem
+    currentPoem: state.currentPoem,
+    poemList: state.poemList
   }
 }
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    updatePoemList: (newPoemList) => {
+      dispatch({type: "UPDATE_POEMLIST", payload: newPoemList})
+    }
+  }
+}
 
-
-export default connect(mapStateToProps)(DisplayPoem)
+export default connect(mapStateToProps, mapDispatchToProps)(DisplayPoem)
