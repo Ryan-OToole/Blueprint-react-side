@@ -1,32 +1,27 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux"
 import { form } from 'semantic-ui-react';
-import Adapter from './Adapter';
 
-class CreatePoemForm extends Component {
 
-  handleSubmit = (event,title,body) => {
-    event.preventDefault()
-    Adapter.postPoem(title,body).then( poem => this.props.addToPoemList(poem))
-  }
+class UpdatePoemForm extends Component {
 
   render() {
     return (
         <div id="poem-details">
           <form onSubmit={this.handleSubmit}>
               Title:<br/><input id='note-title-input'
-               name="title"
+               name="currentPoemTitle"
                type='text'
                size="30"
                onChange={this.props.handleChange}
-               value={this.props.title} /><br/>
+               value={this.props.currentPoemTitle} /><br/>
               Body:<br/><textarea
                 id='note-body-input'
-                name="body"
+                name="currentPoemBody"
                 rows="10"
                 cols="50"
                 onChange={this.props.handleChange}
-                value={this.props.body}></textarea><br/>
+                value={this.props.currentPoemBody}></textarea><br/>
               <button type='submit'>Create note</button>
           </form>
         </div>
@@ -36,9 +31,9 @@ class CreatePoemForm extends Component {
 
   function mapStateToProps(state) {
     return {
-      title: state.title,
-      body: state.body,
-      poemList: state.poemList
+      currentPoem: state.currentPoem,
+      currentPoemTitle: state.currentPoemTitle,
+      currentPoemBody: state.currentPoemBody
     }
   }
 
@@ -50,8 +45,7 @@ class CreatePoemForm extends Component {
       addToPoemList: (poem) => {
         dispatch({type: "ADD_TO_POEMLIST", payload: poem})
       }
-
     }
   }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CreatePoemForm)
+export default connect(mapStateToProps, mapDispatchToProps)(UpdatePoemForm)

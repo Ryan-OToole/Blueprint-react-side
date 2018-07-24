@@ -6,8 +6,31 @@ import Sidebar from './Sidebar'
 import CreatePoemForm from './CreatePoemForm'
 import DisplayPoem from './DisplayPoem'
 import { connect } from "react-redux"
+import UpdatePoemForm from './UpdatePoemForm'
+import Adapter from './Adapter'
 
 class App extends Component {
+
+  componentDidMount() {
+    Adapter.getPoems()
+      .then(this.props.fillPoemList)
+  }
+
+  renderDisplayType = () => {
+    switch(this.props.displayType) {
+        case "display":
+          return <DisplayPoem />
+        case "create":
+          return <CreatePoemForm />
+        case "update":
+          return <UpdatePoemForm />
+        default:
+          return null
+    }
+  }
+
+
+
   render() {
     return (
       <div className="App">
@@ -15,18 +38,24 @@ class App extends Component {
         <LoginForm /><br/>
         <RegistrationForm /><br/><br/><br/>
         <Sidebar />
-        {this.props.currentPoem === null ? null : <DisplayPoem />}
-        { this.props.createOrDisplay ? <CreatePoemForm /> : null}
+        { this.renderDisplayType() }
       </div>
-    );
+    )
   }
 }
 
-function mapStateToProps(state){
+function mapStateToProps(state) {
   return {
-    currentPoem: state.currentPoem,
-    createOrDisplay: state.createOrDisplay
+    displayType: state.displayType
   }
 }
 
-export default connect(mapStateToProps)(App)
+function mapDispatchToProps(dispatch) {
+  return {
+    fillPoemList: (poemsArr) => {
+      dispatch({type:"FILL_POEMLIST", payload: poemsArr})
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)
