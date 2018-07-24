@@ -10,6 +10,7 @@ class DisplayPoem extends Component {
     })
     Adapter.deletePoem(poemToDelete)
       .then(this.props.updatePoemList(newPoemList))
+      .then(this.props.setDisplayTypeNull())
       .then(this.props.resetCurrentPoemState())
   }
 
@@ -44,6 +45,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     setDisplayType: () => {
       dispatch({type: "SET_DISPLAY_TYPE", payload: "update"})
+    },
+    setDisplayTypeNull: () => {
+      dispatch({type: "SET_DISPLAY_TYPE", payload: null })
     }
   }
 }

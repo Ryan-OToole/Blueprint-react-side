@@ -44,13 +44,7 @@ this.props.afterUpdateUpdatePoemList(this.props.poemList)
 
 
 //  bottom part of PATCH request
-      .then( poem => {
-        const newPoemList = this.props.poemList.filter( poem => poem.id !== this.props.currentPoem.id)
-        newPoemList.push(poem)
-        this.props.afterUpdateUpdatePoemList(newPoemList)
-      })
-      .then( this.setState({clicked: false}) )
-}
+
 }
 
 

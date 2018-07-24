@@ -1,11 +1,26 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux"
 import { form } from 'semantic-ui-react';
-
+import Adapter from './Adapter';
 
 class UpdatePoemForm extends Component {
 
+  handleSubmit = (event) => {
+    event.preventDefault()
+    Adapter.patchPoem(this.props.currentPoemTitle, this.props.currentPoemBody, this.props.currentPoem)
+      .then( poem => {
+        const newPoemList = this.props.poemList.filter( poem => poem.id !== this.props.currentPoem.id)
+        newPoemList.push(poem)
+        this.props.updatePoemList(newPoemList)
+        this.props.updateCurrentPoem(poem)
+        this.props.setDisplayType()
+      })
+  }
+
+
+
   render() {
+    console.log(this.props)
     return (
         <div id="poem-details">
           <form onSubmit={this.handleSubmit}>
@@ -22,7 +37,7 @@ class UpdatePoemForm extends Component {
                 cols="50"
                 onChange={this.props.handleChange}
                 value={this.props.currentPoemBody}></textarea><br/>
-              <button type='submit'>Create note</button>
+              <button type='submit'>Update Poem</button>
           </form>
         </div>
       )
@@ -33,7 +48,8 @@ class UpdatePoemForm extends Component {
     return {
       currentPoem: state.currentPoem,
       currentPoemTitle: state.currentPoemTitle,
-      currentPoemBody: state.currentPoemBody
+      currentPoemBody: state.currentPoemBody,
+      poemList: state.poemList
     }
   }
 
@@ -42,9 +58,16 @@ class UpdatePoemForm extends Component {
       handleChange: (event) => {
         dispatch({type: "TITLE_AND_BODY", payload: event})
       },
-      addToPoemList: (poem) => {
-        dispatch({type: "ADD_TO_POEMLIST", payload: poem})
+      updatePoemList: (newPoemList) => {
+        dispatch({type: "FILL_POEMLIST", payload: newPoemList})
+      },
+      setDisplayType: () => {
+        dispatch({type: "SET_DISPLAY_TYPE", payload: "display"})
+      },
+      updateCurrentPoem: (poem) => {
+        dispatch({type: "UPDATE_CURRENT_POEM", payload: poem})
       }
+
     }
   }
 

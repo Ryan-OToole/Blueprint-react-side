@@ -20,6 +20,8 @@ const reducer = (state = defaultState, action) => {
       return {...state, [action.payload.target.name]: action.payload.target.value}
     case "SET_DISPLAY_TYPE":
       return {...state, displayType: action.payload}
+    case "UPDATE_CURRENT_POEM":
+      return {...state, currentPoem: action.payload}
     case "ADD_TO_POEMLIST":
       return {...state, poemList: [...state.poemList, action.payload]}
     case "UPDATE_POEMLIST":

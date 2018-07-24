@@ -5,11 +5,15 @@ import Adapter from './Adapter';
 
 class CreatePoemForm extends Component {
 
-  handleSubmit = (event,title,body) => {
+  handleSubmit = (event) => {
     event.preventDefault()
-    Adapter.postPoem(title,body).then( poem => this.props.addToPoemList(poem))
-  }
-
+    Adapter.postPoem(this.props.title, this.props.body)
+      .then( poem => {
+        this.props.addToPoemList(poem)
+        this.props.setCurrentPoem(poem)
+      })
+      .then(this.props.setDisplayType())
+}
   render() {
     return (
         <div id="poem-details">
@@ -27,7 +31,7 @@ class CreatePoemForm extends Component {
                 cols="50"
                 onChange={this.props.handleChange}
                 value={this.props.body}></textarea><br/>
-              <button type='submit'>Create note</button>
+              <button type='submit'>Create Poem</button>
           </form>
         </div>
       )
@@ -49,7 +53,14 @@ class CreatePoemForm extends Component {
       },
       addToPoemList: (poem) => {
         dispatch({type: "ADD_TO_POEMLIST", payload: poem})
+      },
+      setDisplayType: () => {
+        dispatch({type: "SET_DISPLAY_TYPE", payload: "display"})
+      },
+      setCurrentPoem: (poem) => {
+        dispatch({type: "SET_CURRENT_POEM", payload: poem})
       }
+
 
     }
   }
