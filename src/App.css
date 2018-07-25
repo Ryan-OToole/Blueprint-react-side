@@ -34,5 +34,12 @@
 #poem-details {
     text-align: left;
     float:left;
-    width: 70%;
+    width: 40%;
+}
+
+#markov-madness {
+  text-align: right;
+  float:right;
+  margin-right: 150px;
+  width: 40%;
 }

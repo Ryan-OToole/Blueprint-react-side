@@ -8,6 +8,9 @@ import DisplayPoem from './DisplayPoem'
 import { connect } from "react-redux"
 import UpdatePoemForm from './UpdatePoemForm'
 import Adapter from './Adapter'
+import MarkovMaker from './MarkovMaker'
+import MarkovMade from './MarkovMade'
+import {Grid, Segment} from 'semantic-ui-react'
 
 class App extends Component {
 
@@ -34,12 +37,26 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <br/>
-        <LoginForm /><br/>
-        <RegistrationForm /><br/><br/><br/>
-        <Sidebar />
-        { this.renderDisplayType() }
-      </div>
+        <h3>Markov Madness</h3>
+          <LoginForm />
+          <RegistrationForm />
+        <Grid columns={3} divided>
+         <Grid.Row stretched>
+           <Grid.Column>
+             <Segment><Sidebar /></Segment>
+             <Segment>2</Segment>
+             <Segment>3</Segment>
+           </Grid.Column>
+           <Grid.Column>
+             <Segment>{ this.renderDisplayType() }</Segment>
+           </Grid.Column>
+           <Grid.Column>
+             <Segment><MarkovMaker /></Segment>
+             <Segment><MarkovMade /></Segment>
+           </Grid.Column>
+         </Grid.Row>
+       </Grid>
+     </div>
     )
   }
 }

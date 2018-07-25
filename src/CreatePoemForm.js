@@ -14,6 +14,7 @@ class CreatePoemForm extends Component {
       })
       .then(this.props.setDisplayType())
 }
+
   render() {
     return (
         <div id="poem-details">
