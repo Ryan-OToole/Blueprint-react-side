@@ -42,17 +42,14 @@ class App extends Component {
           <RegistrationForm />
         <Grid columns={3} divided>
          <Grid.Row stretched>
-           <Grid.Column>
+           <Grid.Column centered>
              <Segment><Sidebar /></Segment>
-             <Segment>2</Segment>
-             <Segment>3</Segment>
            </Grid.Column>
            <Grid.Column>
              <Segment>{ this.renderDisplayType() }</Segment>
            </Grid.Column>
            <Grid.Column>
-             <Segment><MarkovMaker /></Segment>
-             <Segment><MarkovMade /></Segment>
+             <Segment><MarkovMaker /> <MarkovMade /></Segment>
            </Grid.Column>
          </Grid.Row>
        </Grid>

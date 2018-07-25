@@ -6,8 +6,8 @@ const defaultState = {
   title: "",
   body: "",
   displayType: "",
-  markovInput: "",
-  markovOutput: ""
+  markov: "",
+  markovOutput: "",
 }
 
 const reducer = (state = defaultState, action) => {
@@ -32,7 +32,11 @@ const reducer = (state = defaultState, action) => {
     case "UPDATE_POEMLIST_AFTER_UPDATE":
       return {...state, poemList: action.payload}
     case "GENERATE_MARKOV_OUTPUT":
-      return {...state, markovOutput: action.payload}
+      return {...state, markovOutput: action.payload, markov: ""}
+    case "SET_MARKOV_INPUT":
+      return {...state, markov: action.payload.body}
+      case "CLEAR_MARKOV_OUTPUT":
+        return {...state, markovOutput: action.payload}
     default:
       return state
   }

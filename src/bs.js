@@ -69,3 +69,39 @@ afterUpdateUpdatePoemList: (poemList) => {
 addPostToSidebar: (poem) => {
   dispatch({type: "POST_TO_SIDEBAR", payload: poem})
 }
+
+
+
+
+
+<div
+  onClick={() => {this.props.setCurrentPoem(this.props.poem)}}
+  id={this.props.poem.id}
+  >
+  <h3>{this.props.poem.title}</h3>
+</div>
+
+
+
+
+
+const CardExampleGroups = () => (
+  <Card.Group>
+    <Card>
+      <Card.Content>
+        <Image floated='right' size='mini' src='/images/avatar/large/steve.jpg' />
+        <Card.Header>Steve Sanders</Card.Header>
+        <Card.Meta>Friends of Elliot</Card.Meta>
+        <Card.Description>
+          Steve wants to add you to the group <strong>best friends</strong>
+
+
+
+
+
+
+<Grid.Column centered>
+  <Segment><Sidebar /></Segment>
+  <Segment>2</Segment>
+  <Segment>3</Segment>
+</Grid.Column>

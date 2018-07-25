@@ -8,12 +8,13 @@ class MarkovMade extends Component {
   handleSubmit = (event) => {
     event.preventDefault()
 
-  Adapter.postPoem(`Markov i`, this.props.markovOutput)
-    .then( poem => {
-      this.props.addToPoemList(poem)
-      this.props.setCurrentPoem(poem)
-    })
-    .then(this.props.setDisplayType())
+    Adapter.postPoem("Flinstone Space Jam", this.props.markovOutput)
+        .then( poem => {
+          this.props.addToPoemList(poem)
+          this.props.setCurrentPoem(poem)
+        })
+        .then(this.props.setDisplayType())
+        .then(this.props.clearMarkovOutput())
 }
 
 render() {
@@ -42,8 +43,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    saveMarkovPoem: () => {
-
+    clearMarkovOutput: () => {
+      dispatch({type: "CLEAR_MARKOV_OUTPUT", payload: ""})
     },
     addToPoemList: (poem) => {
       dispatch({type: "ADD_TO_POEMLIST", payload: poem})

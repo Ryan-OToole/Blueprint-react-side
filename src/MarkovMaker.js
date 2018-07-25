@@ -62,7 +62,7 @@ Markov.prototype = {
             var currentChunk = text.substr(text.length - this.order);
             var newChar = this._getRandomChar(currentChunk);
 
-            if (newChar != '') { // the last chunk of the source has no follower
+            if (newChar !== '') { // the last chunk of the source has no follower
                 text += newChar;
             } else {
                 text += this._getRandomChunk();
@@ -86,6 +86,7 @@ class MarkovMaker extends Component {
   }
 
   render() {
+    console.log(this.props.markov)
     return (
       <div id="markov-madness">
         <form onSubmit={this.handleSubmit}>

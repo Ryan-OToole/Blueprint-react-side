@@ -29,7 +29,7 @@
 
 #sidebar {
     float:left;
-    width: 30%;
+    width: 100%;
 }
 #poem-details {
     text-align: left;
