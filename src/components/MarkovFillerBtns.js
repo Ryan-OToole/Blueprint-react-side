@@ -2,19 +2,18 @@ import React, { Component } from 'react';
 import { connect } from "react-redux"
 import '../App.css';
 import Adapter from '../Adapter'
+import { setMarkovInput } from '../actions/index'
 
 const URL = "http://localhost:3000/poems";
 
-class MarkovMade extends Component {
+class MarkovFillerBtns extends Component {
 
   handleClick = (id) => {
       // Adapter.getFillerText(id)
       fetch(URL + `/${id}`)
       .then(res=>res.json())
       .then( poemObj => {
-        console.log(poemObj);
-        debugger
-          this.props.setMarkovInput(poemObj)
+          this.props.setMarkovInput(poemObj.body)
         })
   }
 
@@ -32,10 +31,10 @@ class MarkovMade extends Component {
 
   const mapDispatchToProps = (dispatch) => {
     return {
-        setMarkovInput: (poem) => {
-          dispatch({type: "SET_MARKOV_INPUT", payload: poem})
+        setMarkovInput: (poemText) => {
+          dispatch(setMarkovInput(poemText))
         }
     }
   }
 
-  export default connect(null, mapDispatchToProps)(MarkovMade)
+  export default connect(null, mapDispatchToProps)(MarkovFillerBtns)

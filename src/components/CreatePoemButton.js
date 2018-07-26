@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { setDisplayType } from '../actions/index'
 
 class CreatePoemButton extends Component {
 
@@ -15,7 +16,7 @@ class CreatePoemButton extends Component {
   function mapDispatchToProps(dispatch){
     return {
       setDisplayType: () => {
-        dispatch({type: "SET_DISPLAY_TYPE", payload: "create"})
+        dispatch(setDisplayType("create"))
     }
   }
 }

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux"
 import { form } from 'semantic-ui-react';
-import Adapter from '../Adapter'
+import Adapter from '../Adapter';
+import { setPoemList, setCurrentPoem, controlledComponent, setDisplayType } from '../actions/index'
 
 class CreatePoemForm extends Component {
 
@@ -9,11 +10,14 @@ class CreatePoemForm extends Component {
     event.preventDefault()
     Adapter.postPoem(this.props.title, this.props.body)
       .then( poem => {
-        this.props.addToPoemList(poem)
+        const poemListUpdated = Array.from(this.props.poemList)
+        poemListUpdated.push(poem)
+        this.props.updatePoemList(poemListUpdated)
         this.props.setCurrentPoem(poem)
+        this.props.setDisplayType()
       })
-      .then(this.props.setDisplayType())
 }
+
 
   render() {
     return (
@@ -50,19 +54,17 @@ class CreatePoemForm extends Component {
   function mapDispatchToProps(dispatch){
     return {
       handleChange: (event) => {
-        dispatch({type: "TITLE_AND_BODY", payload: event})
+        dispatch(controlledComponent(event))
       },
-      addToPoemList: (poem) => {
-        dispatch({type: "ADD_TO_POEMLIST", payload: poem})
+      updatePoemList: (poemListUpdated) => {
+        dispatch(setPoemList(poemListUpdated))
       },
       setDisplayType: () => {
-        dispatch({type: "SET_DISPLAY_TYPE", payload: "display"})
+        dispatch(setDisplayType("display"))
       },
       setCurrentPoem: (poem) => {
-        dispatch({type: "SET_CURRENT_POEM", payload: poem})
+        dispatch(setCurrentPoem(poem))
       }
-
-
     }
   }
 

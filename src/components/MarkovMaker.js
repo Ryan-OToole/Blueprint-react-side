@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from "react-redux"
 import '../App.css';
 import MarkovFillerBtns from './MarkovFillerBtns'
+import { controlledComponent, clearMarkov, setMarkovOutput } from '../actions/index'
 
 function Markov(sourceText, order) {
 
@@ -83,6 +84,7 @@ class MarkovMaker extends Component {
     var markov = new Markov(this.props.markov, 5)
     var markovOutput = markov.generateText(250)
     this.props.handleMarkovOutput(markovOutput)
+    this.props.clearMarkov()
   }
 
   render() {
@@ -114,10 +116,13 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     handleMarkov: (event) => {
-      dispatch({type:"TITLE_AND_BODY", payload: event})
+      dispatch(controlledComponent(event))
+    },
+    clearMarkov: () => {
+      dispatch(clearMarkov(""))
     },
     handleMarkovOutput: (markovOutput) => {
-      dispatch({type: "GENERATE_MARKOV_OUTPUT", payload: markovOutput })
+      dispatch(setMarkovOutput(markovOutput))
     }
   }
 }

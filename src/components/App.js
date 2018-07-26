@@ -12,6 +12,7 @@ import MarkovMaker from './MarkovMaker'
 import MarkovMade from './MarkovMade'
 import {Grid, Segment} from 'semantic-ui-react'
 import MarkovFillerBtns from './MarkovFillerBtns'
+import { setPoemList } from '../actions/index'
 
 class App extends Component {
 
@@ -67,7 +68,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     fillPoemList: (poemsArr) => {
-      dispatch({type:"FILL_POEMLIST", payload: poemsArr})
+      dispatch(setPoemList(poemsArr))
     }
   }
 }

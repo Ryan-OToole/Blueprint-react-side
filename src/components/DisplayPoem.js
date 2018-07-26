@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { connect } from "react-redux"
-import Adapter from '../Adapter'
+import { connect } from "react-redux";
+import Adapter from '../Adapter';
+import { setPoemList, setCurrentPoem, setDisplayType } from '../actions/index'
 
 class DisplayPoem extends Component {
 
@@ -11,7 +12,7 @@ class DisplayPoem extends Component {
     Adapter.deletePoem(poemToDelete)
       .then(this.props.updatePoemList(newPoemList))
       .then(this.props.setDisplayTypeNull())
-      .then(this.props.resetCurrentPoemState())
+      .then(this.props.setCurrentPoemState())
   }
 
   render() {
@@ -38,16 +39,16 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     updatePoemList: (newPoemList) => {
-      dispatch({type: "UPDATE_POEMLIST", payload: newPoemList})
+      dispatch(setPoemList(newPoemList))
     },
-    resetCurrentPoemState: () => {
-      dispatch({type: "RESET_CURRENT_POEM_STATE", payload: null})
+    setCurrentPoemState: () => {
+      dispatch(setCurrentPoem(""))
     },
     setDisplayType: () => {
-      dispatch({type: "SET_DISPLAY_TYPE", payload: "update"})
+      dispatch(setDisplayType("update"))
     },
     setDisplayTypeNull: () => {
-      dispatch({type: "SET_DISPLAY_TYPE", payload: null })
+      dispatch(setDisplayType(null))
     }
   }
 }

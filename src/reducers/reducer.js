@@ -13,30 +13,21 @@ const defaultState = {
 const reducer = (state = defaultState, action) => {
 
   switch(action.type) {
-    case "FILL_POEMLIST":
+    case "SET_POEMLIST":
       return {...state, poemList: action.payload}
     case "SET_CURRENT_POEM":
-      return {...state, currentPoem: action.payload, currentPoemTitle: action.payload.title, currentPoemBody: action.payload.body, displayType: "display"}
-    case "TITLE_AND_BODY":
+      return {...state, currentPoem: action.payload, currentPoemTitle: action.payload.title, currentPoemBody: action.payload.body}
+    case "CONTROLLED_COMPONENT":
       return {...state, [action.payload.target.name]: action.payload.target.value}
     case "SET_DISPLAY_TYPE":
       return {...state, displayType: action.payload}
-    case "UPDATE_CURRENT_POEM":
-      return {...state, currentPoem: action.payload}
-    case "ADD_TO_POEMLIST":
-      return {...state, poemList: [...state.poemList, action.payload]}
-    case "UPDATE_POEMLIST":
-      return {...state, poemList: action.payload}
-    case "UPDATE_AFTER_UPDATE":
-      return {...state, currentPoem: action.payload}
-    case "UPDATE_POEMLIST_AFTER_UPDATE":
-      return {...state, poemList: action.payload}
-    case "GENERATE_MARKOV_OUTPUT":
-      return {...state, markovOutput: action.payload, markov: ""}
     case "SET_MARKOV_INPUT":
-      return {...state, markov: state.markov + action.payload.body}
-      case "CLEAR_MARKOV_OUTPUT":
-        return {...state, markovOutput: action.payload}
+      return {...state, markov: state.markov + action.payload}
+    case "CLEAR_MARKOV":
+      return {...state, markov: action.payload}
+    case "SET_MARKOV_OUTPUT":
+      return {...state, markovOutput: action.payload}
+
     default:
       return state
   }

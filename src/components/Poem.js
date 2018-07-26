@@ -1,14 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Button, Card, Image } from 'semantic-ui-react'
+import { setCurrentPoem, setDisplayType, setMarkovInput } from '../actions/index'
 
 class Poem extends Component {
+
+  setAndDisplayPoem = () => {
+    this.props.setCurrentPoem(this.props.poem)
+    this.props.setDisplayType()
+  }
 
   render() {
     return (
         <Card.Group centered>
           <Card>
-            <Card.Content id={this.props.poem.id} onClick={() => {this.props.setCurrentPoem(this.props.poem)}}>
+            <Card.Content id={this.props.poem.id} onClick={() => this.setAndDisplayPoem()}>
               <Image floated='right' size='mini' src='https://www.thoughtco.com/thmb/ZN0M8gc9tVZ_6-x3nk8Oq6jW83U=/768x0/filters:no_upscale():max_bytes(150000):strip_icc()/4654256961_9bec940158_b-5953f0505f9b584bfedd6d07.jpg' />
               <Card.Header>{this.props.poem.title}</Card.Header>
               <Card.Meta>Badass Poetry Presents</Card.Meta>
@@ -18,7 +24,7 @@ class Poem extends Component {
             </Card.Content>
             <Card.Content extra>
               <div className='ui two buttons'>
-                <Button basic color='green' onClick={() => {this.props.setMarkovInput(this.props.poem)}}>
+                <Button basic color='green' onClick={() => {this.props.setMarkovInput(this.props.poem.body)}}>
                   Add to Markov
                 </Button>
                 <Button basic color='red'>
@@ -35,10 +41,13 @@ class Poem extends Component {
 const mapDispatchToProps = (dispatch) => {
   return {
       setCurrentPoem: (poem) => {
-        dispatch({type: "SET_CURRENT_POEM", payload: poem})
+        dispatch(setCurrentPoem(poem))
     },
-      setMarkovInput: (poem) => {
-        dispatch({type: "SET_MARKOV_INPUT", payload: poem})
+      setMarkovInput: (poemText) => {
+        dispatch(setMarkovInput(poemText))
+      },
+      setDisplayType: () => {
+        dispatch(setDisplayType("display"))
       }
   }
 }

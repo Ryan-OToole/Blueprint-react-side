@@ -1,20 +1,22 @@
 import React, { Component } from 'react';
-import { connect } from "react-redux"
+import { connect } from "react-redux";
 import '../App.css';
-import Adapter from '../Adapter'
+import Adapter from '../Adapter';
+import { setPoemList, setCurrentPoem, setDisplayType, setMarkovOutput } from '../actions/index'
 
 class MarkovMade extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault()
-
     Adapter.postPoem("Flinstone Space Jam", this.props.markovOutput)
         .then( poem => {
-          this.props.addToPoemList(poem)
+          const poemListUpdated = Array.from(this.props.poemList)
+          poemListUpdated.push(poem)
+          this.props.updatePoemList(poemListUpdated)
           this.props.setCurrentPoem(poem)
+          this.props.setDisplayType()
+          this.props.clearMarkovOutput()
         })
-        .then(this.props.setDisplayType())
-        .then(this.props.clearMarkovOutput())
 }
 
 render() {
@@ -38,23 +40,24 @@ render() {
 
 function mapStateToProps(state) {
   return {
-    markovOutput: state.markovOutput
+    markovOutput: state.markovOutput,
+    poemList: state.poemList
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     clearMarkovOutput: () => {
-      dispatch({type: "CLEAR_MARKOV_OUTPUT", payload: ""})
+      dispatch(setMarkovOutput(""))
     },
-    addToPoemList: (poem) => {
-      dispatch({type: "ADD_TO_POEMLIST", payload: poem})
+    updatePoemList: (poemListUpdated) => {
+      dispatch(setPoemList(poemListUpdated))
     },
     setCurrentPoem: (poem) => {
-      dispatch({type: "SET_CURRENT_POEM", payload: poem})
+      dispatch(setCurrentPoem(poem))
     },
     setDisplayType: () => {
-      dispatch({type: "SET_DISPLAY_TYPE", payload: "display"})
+      dispatch(setDisplayType("display"))
     }
   }
 }
