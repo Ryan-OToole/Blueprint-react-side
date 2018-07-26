@@ -24,8 +24,9 @@ class RegistrationForm extends Component {
     })
       .then(res => res.json())
       .then(json => {
-        console.log(json);
+        console.log("json now", json);
         localStorage.setItem('token', json.token);
+        localStorage.setItem('user', json.username)
         // this.props.history.push("/");
       })
   }

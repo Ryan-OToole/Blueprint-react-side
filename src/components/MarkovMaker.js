@@ -90,8 +90,8 @@ class MarkovMaker extends Component {
   render() {
     return (
       <div>
-        <form onSubmit={this.handleSubmit}>
           <MarkovFillerBtns />
+        <form onSubmit={this.handleSubmit}>
             Base Content For Poem:<br/><textarea
               id='markov-body-input'
               name="markov"

@@ -40,6 +40,8 @@ class App extends Component {
 
     return (
       <div className="App">
+        <LoginForm />
+        <RegistrationForm /> 
         <h3>Markov Madness</h3>
         <Grid columns={3} divided>
          <Grid.Row stretched>

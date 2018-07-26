@@ -9,11 +9,9 @@ const URL = "http://localhost:3000/poems";
 class MarkovFillerBtns extends Component {
 
   handleClick = (id) => {
-      // Adapter.getFillerText(id)
-      fetch(URL + `/${id}`)
-      .then(res=>res.json())
-      .then( poemObj => {
-          this.props.setMarkovInput(poemObj.body)
+      Adapter.getFillerText(id)
+        .then( poemObj => {
+           this.props.setMarkovInput(poemObj.body)
         })
   }
 
