@@ -11,6 +11,7 @@ import Adapter from './Adapter'
 import MarkovMaker from './MarkovMaker'
 import MarkovMade from './MarkovMade'
 import {Grid, Segment} from 'semantic-ui-react'
+import MarkovFillerBtns from './MarkovFillerBtns'
 
 class App extends Component {
 
@@ -35,6 +36,7 @@ class App extends Component {
 
 
   render() {
+
     return (
       <div className="App">
         <h3>Markov Madness</h3>
@@ -42,14 +44,14 @@ class App extends Component {
           <RegistrationForm />
         <Grid columns={3} divided>
          <Grid.Row stretched>
-           <Grid.Column centered>
+           <Grid.Column centered="true">
              <Segment><Sidebar /></Segment>
            </Grid.Column>
            <Grid.Column>
              <Segment>{ this.renderDisplayType() }</Segment>
            </Grid.Column>
            <Grid.Column>
-             <Segment><MarkovMaker /> <MarkovMade /></Segment>
+             <Segment>  <MarkovMaker /> <MarkovMade /> </Segment>
            </Grid.Column>
          </Grid.Row>
        </Grid>

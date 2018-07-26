@@ -26,20 +26,3 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
-
-#sidebar {
-    float:left;
-    width: 100%;
-}
-#poem-details {
-    text-align: left;
-    float:left;
-    width: 40%;
-}
-
-#markov-madness {
-  text-align: right;
-  float:right;
-  margin-right: 150px;
-  width: 40%;
-}

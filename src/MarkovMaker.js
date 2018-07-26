@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux"
 import './App.css';
+import MarkovFillerBtns from './MarkovFillerBtns'
 
 function Markov(sourceText, order) {
 
@@ -79,24 +80,23 @@ class MarkovMaker extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault()
-    var markov = new Markov(this.props.markov, 4)
+    var markov = new Markov(this.props.markov, 5)
     var markovOutput = markov.generateText(250)
-    console.log(markovOutput)
     this.props.handleMarkovOutput(markovOutput)
   }
 
   render() {
-    console.log(this.props.markov)
     return (
-      <div id="markov-madness">
+      <div>
         <form onSubmit={this.handleSubmit}>
+            <MarkovFillerBtns />
             Base Content For Poem:<br/><textarea
               id='markov-body-input'
               name="markov"
               rows="10"
               cols="50"
               onChange={this.props.handleMarkov}
-              value={this.props.markov}></textarea>
+              value={this.props.markov}></textarea><br />
             <button type='submit'>Markov this Poem</button>
           </form>
       </div>

@@ -38,4 +38,9 @@ export default class Adapter {
           .then( r=>r.json() )
   }
 
+  static getFillerText(id) {
+    return fetch(`${URL}/${id}`)
+            .then( r=>r.json() )
+  }
+
 }

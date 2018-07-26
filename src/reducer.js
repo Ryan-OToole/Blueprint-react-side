@@ -34,7 +34,7 @@ const reducer = (state = defaultState, action) => {
     case "GENERATE_MARKOV_OUTPUT":
       return {...state, markovOutput: action.payload, markov: ""}
     case "SET_MARKOV_INPUT":
-      return {...state, markov: action.payload.body}
+      return {...state, markov: state.markov + action.payload.body}
       case "CLEAR_MARKOV_OUTPUT":
         return {...state, markovOutput: action.payload}
     default:

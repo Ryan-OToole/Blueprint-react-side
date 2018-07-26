@@ -105,3 +105,24 @@ const CardExampleGroups = () => (
   <Segment>2</Segment>
   <Segment>3</Segment>
 </Grid.Column>
+
+
+onClick={(event) => {this.props.setCurrentPoem(this.props.poem)}
+
+
+
+#sidebar {
+    float:left;
+    width: 100%;
+}
+#poem-details {
+    text-align: left;
+    float:left;
+    width: 100%;
+}
+
+#markov-madness {
+  text-align: right;
+  float:right;
+  width: 100%;
+}

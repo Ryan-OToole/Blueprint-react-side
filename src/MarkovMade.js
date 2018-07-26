@@ -19,7 +19,7 @@ class MarkovMade extends Component {
 
 render() {
   return (
-    <div id="markov-madness">
+    <div>
       <form onSubmit={this.handleSubmit}>
           Gold Content of Poem:<br/><textarea
             id='markov-body-output'
@@ -27,6 +27,7 @@ render() {
             rows="10"
             cols="50"
             value={this.props.markovOutput}></textarea>
+            <br />
         <button type='submit'>Save this Poem?</button>
       </form>
     </div>
