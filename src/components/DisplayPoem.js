@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux"
-import Adapter from './Adapter'
+import Adapter from '../Adapter'
 
 class DisplayPoem extends Component {
 

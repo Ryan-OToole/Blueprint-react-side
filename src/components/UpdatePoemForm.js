@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux"
 import { form } from 'semantic-ui-react';
-import Adapter from './Adapter';
+import Adapter from '../Adapter'
 
 class UpdatePoemForm extends Component {
 

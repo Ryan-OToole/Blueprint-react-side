@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PoemList from './PoemList'
 import CreatePoemButton from './CreatePoemButton'
-import './App.css';
+import '../App.css';
 
 class Sidebar extends Component {
 

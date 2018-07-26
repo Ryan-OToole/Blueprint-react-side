@@ -1,0 +1,1 @@
+/* put variable for strings here */

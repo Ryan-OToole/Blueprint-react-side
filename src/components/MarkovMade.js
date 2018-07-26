@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux"
-import './App.css';
-import Adapter from './Adapter'
+import '../App.css';
+import Adapter from '../Adapter'
 
 class MarkovMade extends Component {
 

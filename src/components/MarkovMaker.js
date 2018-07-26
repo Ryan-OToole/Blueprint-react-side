@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux"
-import './App.css';
+import '../App.css';
 import MarkovFillerBtns from './MarkovFillerBtns'
 
 function Markov(sourceText, order) {
@@ -89,7 +89,7 @@ class MarkovMaker extends Component {
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
-            <MarkovFillerBtns />
+          <MarkovFillerBtns />
             Base Content For Poem:<br/><textarea
               id='markov-body-input'
               name="markov"

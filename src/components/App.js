@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import '../App.css';
 import LoginForm from './LoginForm';
 import RegistrationForm from './RegistrationForm'
 import Sidebar from './Sidebar'
@@ -7,7 +7,7 @@ import CreatePoemForm from './CreatePoemForm'
 import DisplayPoem from './DisplayPoem'
 import { connect } from "react-redux"
 import UpdatePoemForm from './UpdatePoemForm'
-import Adapter from './Adapter'
+import Adapter from '../Adapter'
 import MarkovMaker from './MarkovMaker'
 import MarkovMade from './MarkovMade'
 import {Grid, Segment} from 'semantic-ui-react'
@@ -40,8 +40,6 @@ class App extends Component {
     return (
       <div className="App">
         <h3>Markov Madness</h3>
-          <LoginForm />
-          <RegistrationForm />
         <Grid columns={3} divided>
          <Grid.Row stretched>
            <Grid.Column centered="true">
