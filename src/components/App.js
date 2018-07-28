@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import '../App.css';
 import LoginForm from './LoginForm';
 import RegistrationForm from './RegistrationForm'
@@ -13,6 +13,11 @@ import MarkovMade from './MarkovMade'
 import {Grid, Segment} from 'semantic-ui-react'
 import MarkovFillerBtns from './MarkovFillerBtns'
 import { setPoemList } from '../actions/index'
+import NavBar from './NavBar'
+import { Link, Route, withRouter, Switch, Redirect } from 'react-router-dom'
+import Home from './Home'
+import PoemContainer from './PoemContainer'
+
 
 class App extends Component {
 
@@ -21,41 +26,17 @@ class App extends Component {
       .then(this.props.fillPoemList)
   }
 
-  renderDisplayType = () => {
-    switch(this.props.displayType) {
-        case "display":
-          return <DisplayPoem />
-        case "create":
-          return <CreatePoemForm />
-        case "update":
-          return <UpdatePoemForm />
-        default:
-          return null
-    }
-  }
-
-
-
   render() {
 
     return (
       <div className="App">
-        <LoginForm />
-        <RegistrationForm /> 
-        <h3>Markov Madness</h3>
-        <Grid columns={3} divided>
-         <Grid.Row stretched>
-           <Grid.Column centered="true">
-             <Segment><Sidebar /></Segment>
-           </Grid.Column>
-           <Grid.Column>
-             <Segment>{ this.renderDisplayType() }</Segment>
-           </Grid.Column>
-           <Grid.Column>
-             <Segment>  <MarkovMaker /> <MarkovMade /> </Segment>
-           </Grid.Column>
-         </Grid.Row>
-       </Grid>
+          <NavBar />
+        <Switch>
+
+        <Route exact path="/register" component={(props) =>   <RegistrationForm {...props} /> }/>
+        <Route exact path="/poems" component={(props) =>   <PoemContainer {...props} /> }/>
+        <Route exact path="/login" component={(props) => <LoginForm {...props} /> }/>
+      </Switch>
      </div>
     )
   }
@@ -75,4 +56,4 @@ function mapDispatchToProps(dispatch) {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App))

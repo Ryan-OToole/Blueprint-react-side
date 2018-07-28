@@ -43,4 +43,8 @@ export default class Adapter {
             .then( r=>r.json() )
   }
 
+  static isLoggedIn() {
+    return !!localStorage.getItem('token');
+  }
+
 }

@@ -8,6 +8,7 @@ const defaultState = {
   displayType: "",
   markov: "",
   markovOutput: "",
+  currentUser: {}
 }
 
 const reducer = (state = defaultState, action) => {
@@ -27,6 +28,8 @@ const reducer = (state = defaultState, action) => {
       return {...state, markov: action.payload}
     case "SET_MARKOV_OUTPUT":
       return {...state, markovOutput: action.payload}
+    case "UPDATE_CURRENT_USER":
+      return {...state, currentUser: action.payload}
 
     default:
       return state

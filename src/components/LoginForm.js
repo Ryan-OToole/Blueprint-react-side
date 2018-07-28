@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { Form, Grid, Segment } from 'semantic-ui-react';
+import { updateCurrentUser } from '../actions/index'
+import { connect } from "react-redux"
 
 class LoginForm extends Component {
   state = {
@@ -27,38 +30,57 @@ class LoginForm extends Component {
       .then(res => res.json())
       .then(json => {
         localStorage.setItem('token', json.token);
-        // this.props.history.push("/");
+        this.props.updateCurrentUser(json)
+        this.props.history.push("/poems");
       })
-      // .then(() => {
-      //   this.setState({ ...this.state });
-      // })
   }
 
   render() {
     return (
-      <div className="login">
-        <form onSubmit={this.handleSubmit}>
-          <label htmlFor="username">Username</label>
-          <input
-            type="text"
-            name="username"
-            placeholder="Username"
-            onChange={this.handleChange}
-            value={this.state.username}
-          />
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            name="password"
-            placeholder="Password"
-            onChange={this.handleChange}
-            value={this.state.password}
-          />
-          <input type="submit" value="Login" />
-        </form>
-      </div>
+      <React.Fragment>
+        <Grid>
+          <Grid.Row centered>
+            <Segment padded='very' style={{width: '40%'}}>
+              <Form onSubmit={this.handleSubmit}>
+                <Form.Input
+                  label='Username'
+                  type="text"
+                  name="username"
+                  placeholder="Username"
+                  onChange={this.handleChange}
+                  value={this.state.username}
+                />
+                <Form.Input
+                  label="Password"
+                  type="password"
+                  name="password"
+                  placeholder="Password"
+                  onChange={this.handleChange}
+                  value={this.state.password}
+                />
+              <Form.Button type="submit" color='green' content="Login" />
+              </Form>
+            </Segment>
+          </Grid.Row>
+        </Grid>
+      </React.Fragment>
     )
   }
 }
 
-export default LoginForm;
+function mapStateToProps(state) {
+  return {
+    currentUser: state.currentUser
+  }
+}
+
+function mapDispatchToProps(dispatch){
+  return {
+    updateCurrentUser: (user) => {
+      dispatch(updateCurrentUser(user))
+      }
+    }
+  }
+
+
+  export default connect(mapStateToProps, mapDispatchToProps)(LoginForm)

@@ -126,3 +126,17 @@ onClick={(event) => {this.props.setCurrentPoem(this.props.poem)}
   float:right;
   width: 100%;
 }
+
+
+<Link className="ui inverted item" to="/registration" > Registration </Link>
+<Link className="ui inverted item" to="/login"> Login </Link>
+<Link className="ui inverted item" to="/login"> Login </Link>
+        <Link className="ui inverted item" to="/">
+
+
+        npm WARN ajv-keywords@3.2.0 requires a peer of ajv@^6.0.0 but none was installed.
+
+
+
+
+      

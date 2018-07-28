@@ -47,6 +47,12 @@ export function setMarkovOutput(string) {
   }
 }
 
+export function updateCurrentUser(user) {
+  return {
+    type: "UPDATE_CURRENT_USER",
+    payload: user
+  }
+}
 
 //
 // case "TITLE_AND_BODY":
