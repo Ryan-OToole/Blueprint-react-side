@@ -17,10 +17,12 @@ const reducer = (state = defaultState, action) => {
     case "SET_POEMLIST":
       return {...state, poemList: action.payload}
     case "SET_CURRENT_POEM":
+      console.log("inside current poem")
       return {...state, currentPoem: action.payload, currentPoemTitle: action.payload.title, currentPoemBody: action.payload.body}
     case "CONTROLLED_COMPONENT":
       return {...state, [action.payload.target.name]: action.payload.target.value}
     case "SET_DISPLAY_TYPE":
+      console.log("inside display type")
       return {...state, displayType: action.payload}
     case "SET_MARKOV_INPUT":
       return {...state, markov: state.markov + action.payload}

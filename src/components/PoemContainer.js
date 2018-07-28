@@ -1,21 +1,14 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import '../App.css';
-import LoginForm from './LoginForm';
-import RegistrationForm from './RegistrationForm'
 import Sidebar from './Sidebar'
 import CreatePoemForm from './CreatePoemForm'
 import DisplayPoem from './DisplayPoem'
 import { connect } from "react-redux"
 import UpdatePoemForm from './UpdatePoemForm'
-import Adapter from '../Adapter'
 import MarkovMaker from './MarkovMaker'
 import MarkovMade from './MarkovMade'
 import {Grid, Segment} from 'semantic-ui-react'
-import MarkovFillerBtns from './MarkovFillerBtns'
-import { setPoemList } from '../actions/index'
-import NavBar from './NavBar'
-import { Link, Route, withRouter, Switch, Redirect } from 'react-router-dom'
-import Home from './Home'
+import { withRouter } from 'react-router-dom'
 
 
 
@@ -52,8 +45,8 @@ class PoemContainer extends Component {
          </Grid.Row>
        </Grid>
        :
-       null
-    }
+       <h3>Access Blocked Please Register and/or Login </h3>
+     }
       </div>
     )
   }
@@ -62,7 +55,8 @@ class PoemContainer extends Component {
 
 function mapStateToProps(state) {
   return {
-    currentUser: state.currentUser
+    currentUser: state.currentUser,
+    displayType: state.displayType
   }
 }
 

@@ -4,8 +4,6 @@ import '../App.css';
 import Adapter from '../Adapter'
 import { setMarkovInput } from '../actions/index'
 
-const URL = "http://localhost:3000/poems";
-
 class MarkovFillerBtns extends Component {
 
   handleClick = (id) => {

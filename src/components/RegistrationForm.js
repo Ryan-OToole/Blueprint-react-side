@@ -36,6 +36,7 @@ class RegistrationForm extends Component {
   render() {
     return (
       <React.Fragment>
+        <h3>Badass Poetry Presents</h3>
         <Grid>
           <Grid.Row centered>
             <Segment padded='very' style={{width: '40%'}}>
@@ -61,7 +62,7 @@ class RegistrationForm extends Component {
             </Segment>
           </Grid.Row>
         </Grid>
-        Already a user? <Link className="ui basic inverted item" to="/">Login here</Link>
+        Already a user? <Link className="ui basic inverted item" to="/login">Login here</Link>
       </React.Fragment>
     )
   }

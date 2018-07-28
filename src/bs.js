@@ -139,4 +139,5 @@ onClick={(event) => {this.props.setCurrentPoem(this.props.poem)}
 
 
 
-      
+        <Route exact path="/" component={(props) => {
+               return ( < { ...props } /> ) }}  />
