@@ -5,7 +5,6 @@ import Adapter from '../Adapter'
 class NavBar extends Component {
 
   handleClick = (event) => {
-    console.log("hey inside Of logout problem")
       localStorage.removeItem('token')
       localStorage.removeItem('user')
   }

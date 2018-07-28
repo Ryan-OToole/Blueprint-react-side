@@ -13,12 +13,13 @@ import PoemContainer from './PoemContainer'
 class App extends Component {
 
   componentDidMount() {
-    Adapter.getPoems()
+    Adapter.getPoems(this.props.currentUser.id)
       .then(this.props.fillPoemList)
   }
 
-  render() {
 
+
+  render() {
     return (
       <div className="App">
           <NavBar />
@@ -34,7 +35,8 @@ class App extends Component {
 
 function mapStateToProps(state) {
   return {
-    displayType: state.displayType
+    displayType: state.displayType,
+    currentUser: state.currentUser
   }
 }
 

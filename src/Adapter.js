@@ -1,9 +1,7 @@
-const URL = "http://localhost:3000/poems";
-
 export default class Adapter {
 
-  static getPoems() {
-    return fetch(URL).then(res => res.json())
+  static getPoems(id) {
+    return fetch(`http://localhost:3000/users/${id}/poems`).then(res => res.json())
   }
 
   static postPoem(poemTitle, poemBody) {
