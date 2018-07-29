@@ -1,21 +1,25 @@
+const URL = 'http://localhost:3000/poems/'
+
 export default class Adapter {
 
   static getPoems(id) {
-    return fetch(`http://localhost:3000/users/${id}/poems`).then(res => res.json())
+    return fetch(`http://localhost:3000/users/${id}/poems`)
+              .then(res => res.json())
   }
 
-  static postPoem(poemTitle, poemBody) {
+
+  static postPoem(poemTitle, poemBody, id) {
     const config = {
       method: "POST",
       headers: {'Content-Type':'application/json'},
       body: JSON.stringify({
           title: poemTitle,
           body: poemBody,
-          user_id:1
+          user_id: id
       })
     }
   return fetch(URL, config)
-          .then( r=>r.json() )
+          .then( r => r.json() )
   }
 
   static patchPoem(title, body, poem) {

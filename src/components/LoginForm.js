@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Form, Grid, Segment } from 'semantic-ui-react';
 import { updateCurrentUser } from '../actions/index'
 import { connect } from "react-redux"
+import Adapter from '../Adapter'
 
 class LoginForm extends Component {
   state = {
@@ -34,6 +35,14 @@ class LoginForm extends Component {
         this.props.history.push("/poems");
       })
   }
+
+
+
+
+
+
+
+
 
   render() {
     return (
@@ -68,6 +77,7 @@ class LoginForm extends Component {
   }
 }
 
+
 function mapStateToProps(state) {
   return {
     currentUser: state.currentUser
@@ -78,9 +88,9 @@ function mapDispatchToProps(dispatch){
   return {
     updateCurrentUser: (user) => {
       dispatch(updateCurrentUser(user))
-      }
     }
   }
+}
 
 
   export default connect(mapStateToProps, mapDispatchToProps)(LoginForm)

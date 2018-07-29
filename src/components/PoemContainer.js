@@ -9,8 +9,8 @@ import MarkovMaker from './MarkovMaker'
 import MarkovMade from './MarkovMade'
 import {Grid, Segment} from 'semantic-ui-react'
 import { withRouter } from 'react-router-dom'
-
-
+import Adapter from '../Adapter'
+import { setPoemList, setDisplayType, setCurrentPoem } from '../actions/index'
 
 class PoemContainer extends Component {
 
@@ -27,10 +27,25 @@ class PoemContainer extends Component {
     }
   }
 
+  componentDidMount() {
+    if(this.props.currentUser) {
+      Adapter.getPoems(this.props.currentUser.id)
+      .then( poems => {
+        const poemListUpdated = []
+        for (let poem of poems){
+          poemListUpdated.push(poem)
+          this.props.setCurrentPoem(poem)
+        }
+        this.props.setPoemList(poemListUpdated)
+        this.props.setDisplayType("display")
+      })
+  }
+}
+
   render() {
     return (
       <div>
-      {this.props.currentUser.username ?
+      {this.props.currentUser ?
         <Grid columns={3} divided>
          <Grid.Row stretched>
            <Grid.Column centered="true">
@@ -45,7 +60,7 @@ class PoemContainer extends Component {
          </Grid.Row>
        </Grid>
        :
-       <h3>Access Blocked Please Register and/or Login </h3>
+       <h3>Please Register and/or Login </h3>
      }
       </div>
     )
@@ -53,13 +68,30 @@ class PoemContainer extends Component {
 }
 
 
+
 function mapStateToProps(state) {
   return {
     currentUser: state.currentUser,
-    displayType: state.displayType
+    displayType: state.displayType,
+    poemList: state.poemList
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+  setPoemList:(poemsArr) => {
+    dispatch(setPoemList(poemsArr))
+  },
+  setCurrentPoem:(poem) => {
+    dispatch(setCurrentPoem(poem))
+  },
+  setDisplayType:(string) => {
+    dispatch(setDisplayType(string))
+    }
   }
 }
 
 
 
-export default withRouter(connect(mapStateToProps)(PoemContainer))
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PoemContainer))

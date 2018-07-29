@@ -8,7 +8,7 @@ const defaultState = {
   displayType: "",
   markov: "",
   markovOutput: "",
-  currentUser: {}
+  currentUser: null
 }
 
 const reducer = (state = defaultState, action) => {

@@ -11,6 +11,7 @@ class Poem extends Component {
   }
 
   render() {
+    console.log(this.props.poem)
     return (
         <Card.Group centered>
           <Card>
@@ -19,7 +20,7 @@ class Poem extends Component {
               <Card.Header>{this.props.poem.title}</Card.Header>
               <Card.Meta>Badass Poetry Presents</Card.Meta>
               <Card.Description>
-              {this.props.poem.body.slice(0,50)}
+              {this.props.poem.body}
               </Card.Description>
             </Card.Content>
             <Card.Content extra>

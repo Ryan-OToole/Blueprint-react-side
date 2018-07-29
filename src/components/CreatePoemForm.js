@@ -8,7 +8,7 @@ class CreatePoemForm extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault()
-    Adapter.postPoem(this.props.title, this.props.body)
+    Adapter.postPoem(this.props.title, this.props.body, this.props.currentUser.id)
       .then( poem => {
         const poemListUpdated = Array.from(this.props.poemList)
         poemListUpdated.push(poem)
@@ -47,7 +47,8 @@ class CreatePoemForm extends Component {
     return {
       title: state.title,
       body: state.body,
-      poemList: state.poemList
+      poemList: state.poemList,
+      currentUser: state.currentUser
     }
   }
 

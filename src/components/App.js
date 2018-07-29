@@ -12,21 +12,17 @@ import PoemContainer from './PoemContainer'
 
 class App extends Component {
 
-  componentDidMount() {
-    Adapter.getPoems(this.props.currentUser.id)
-      .then(this.props.fillPoemList)
-  }
-
 
 
   render() {
+    
     return (
       <div className="App">
           <NavBar />
         <Switch>
-        <Route exact path="/" component={(props) =>   <RegistrationForm {...props} /> }/>
-        <Route exact path="/poems" component={(props) =>   <PoemContainer {...props} /> }/>
-        <Route exact path="/login" component={(props) => <LoginForm {...props} /> }/>
+          <Route exact path="/" component={(props) =>   <RegistrationForm {...props} /> }/>
+          <Route exact path="/poems" component={(props) =>   <PoemContainer {...props} /> }/>
+          <Route exact path="/login" component={(props) => <LoginForm {...props} /> }/>
       </Switch>
      </div>
     )
@@ -34,18 +30,16 @@ class App extends Component {
 }
 
 function mapStateToProps(state) {
-  return {
-    displayType: state.displayType,
-    currentUser: state.currentUser
-  }
+  currentUser: state.currentUser
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    fillPoemList: (poemsArr) => {
+function mapDispatchToProps(dispatch){
+    setPoemList: (poemsArr) => {
       dispatch(setPoemList(poemsArr))
     }
   }
-}
+
+
+
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App))
