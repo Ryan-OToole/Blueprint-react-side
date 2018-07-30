@@ -3,6 +3,7 @@ import { Form, Grid, Segment } from 'semantic-ui-react';
 import { updateCurrentUser } from '../actions/index'
 import { connect } from "react-redux"
 import Adapter from '../Adapter'
+import { Link } from 'react-router-dom';
 
 class LoginForm extends Component {
   state = {
@@ -36,6 +37,9 @@ class LoginForm extends Component {
       })
   }
 
+  componentWillMount() {
+    document.body.className = 'background_image'
+  }
 
 
 
@@ -68,6 +72,7 @@ class LoginForm extends Component {
                   value={this.state.password}
                 />
               <Form.Button type="submit" color='green' content="Login" />
+                <h3>Not a user? Not a problem</h3> <Link className="ui basic inverted item" to="/register">Register Here!</Link>
               </Form>
             </Segment>
           </Grid.Row>

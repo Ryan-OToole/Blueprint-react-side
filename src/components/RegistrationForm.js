@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Form, Grid, Segment } from 'semantic-ui-react';
-import { Link } from 'react-router-dom';
+
 
 class RegistrationForm extends Component {
   state = {
@@ -29,16 +29,17 @@ class RegistrationForm extends Component {
         console.log("json now", json);
         localStorage.setItem('token', json.token);
         localStorage.setItem('user', json.username)
-        // this.props.history.push("/");
+        this.props.history.push("/");
       })
+  }
+
+  componentWillMount() {
+    document.body.className = 'background_image'
   }
 
   render() {
     return (
       <React.Fragment>
-        <h3>Badass Poetry Presents</h3>
-        <p>Register then login and create your own poems, share poems with the community, and use the Markov Generator to play with</p>
-          <img src="https://www.selfpublishbooks.ie/wp-content/uploads/2016/04/poetry-pencil.jpg" alt="" height="200" width="200" />
         <Grid>
           <Grid.Row centered>
             <Segment padded='very' style={{width: '40%'}}>
@@ -64,7 +65,6 @@ class RegistrationForm extends Component {
             </Segment>
           </Grid.Row>
         </Grid>
-        Already a user? <Link className="ui basic inverted item" to="/login">Login here</Link>
       </React.Fragment>
     )
   }

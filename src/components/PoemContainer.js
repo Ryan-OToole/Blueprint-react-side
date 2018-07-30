@@ -28,6 +28,7 @@ class PoemContainer extends Component {
   }
 
   componentDidMount() {
+    document.body.className = null 
     if(this.props.currentUser) {
       if(this.props.poemList !== [])
       this.props.setDisplayType("")

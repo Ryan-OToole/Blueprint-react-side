@@ -14,11 +14,11 @@ class NavBar extends Component {
 
   render() {
     return (
-      <div className="ui inverted icon large blue menu" >
+      <div className="ui inverted icon large blue menu" id="navBar" >
         { Adapter.isLoggedIn() ?
       <Fragment>
           <div className="left menu">
-            <Link className="ui basic inverted item" to="/poems" >Poems</Link>
+            <Link className="ui basic inverted item" to="/poems" >My Poems</Link>
             <Link className="ui basic inverted item" to="/community">Community Feed</Link>
           </div>
           <div className="right menu">
@@ -27,7 +27,9 @@ class NavBar extends Component {
       </Fragment>
           :
         <div className="right menu">
-          <Link className="ui basic inverted item" to="/">Register</Link>
+          <Link className="ui basic inverted item" to="/">Login</Link>
+          <Link className="ui basic inverted item" to="/register">Register</Link>
+          <Link className="ui basic inverted item" to="/about">About</Link>
         </div>
       }
       </div>

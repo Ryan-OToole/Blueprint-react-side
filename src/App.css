@@ -22,6 +22,26 @@
   font-size: large;
 }
 
+.background_image {
+  background: url('https://www.arts.gov/sites/default/files/styles/large-620/public/MagneticPoetry_Flickr.jpg?itok=8fVFoz6A');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+}
+
+#navBar {
+    height: 75px;
+}
+
+#about {
+  margin: 0 auto;
+  padding: 70px 0;
+  /* margin: 0 250px; */
+  width: 60%;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
