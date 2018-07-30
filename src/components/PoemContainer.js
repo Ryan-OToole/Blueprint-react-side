@@ -29,6 +29,8 @@ class PoemContainer extends Component {
 
   componentDidMount() {
     if(this.props.currentUser) {
+      if(this.props.poemList !== [])
+      this.props.setDisplayType("")
       Adapter.getPoems(this.props.currentUser.id)
       .then( poems => {
         const poemListUpdated = []
@@ -37,9 +39,9 @@ class PoemContainer extends Component {
           this.props.setCurrentPoem(poem)
         }
         this.props.setPoemList(poemListUpdated)
-        this.props.setDisplayType("display")
       })
-  }
+    }
+
 }
 
   render() {

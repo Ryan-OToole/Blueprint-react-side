@@ -11,7 +11,6 @@ class Poem extends Component {
   }
 
   render() {
-    console.log(this.props.poem)
     return (
         <Card.Group centered>
           <Card>

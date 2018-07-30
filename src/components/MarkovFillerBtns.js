@@ -4,6 +4,8 @@ import '../App.css';
 import Adapter from '../Adapter'
 import { setMarkovInput } from '../actions/index'
 
+
+
 class MarkovFillerBtns extends Component {
 
   handleClick = (id) => {
@@ -15,11 +17,13 @@ class MarkovFillerBtns extends Component {
 
 
   render() {
+
       return (
       <div>
           Load Text From:
-          <button onClick={() => {this.handleClick(62)}}>Grimm Bros</button>
-          <button onClick={() => {this.handleClick(68)}}>Emily Dickinson</button>
+          <button onClick={() => {this.handleClick(36)}}>Grimm Bros</button>
+          <button onClick={() => {this.handleClick(38)}}>Emily Dickinson</button>
+          <button onClick={() => {this.handleClick(32)}}>Random Poems</button>
       </div>
       )
     }
@@ -29,7 +33,7 @@ class MarkovFillerBtns extends Component {
     return {
         setMarkovInput: (poemText) => {
           dispatch(setMarkovInput(poemText))
-        }
+      }
     }
   }
 

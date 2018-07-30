@@ -30,15 +30,18 @@ class PoemContainerAll extends Component {
   componentDidMount() {
       Adapter.getPoemsAll()
       .then( poems => {
-        const poemListUpdated = []
+        const poemList1 = []
         for (let poem of poems){
-          poemListUpdated.push(poem)
-          this.props.setCurrentPoem(poem)
+          poemList1.push(poem)
+          // this.props.setCurrentPoem(poem)
         }
-        this.props.setPoemList(poemListUpdated)
-        this.props.setDisplayType("display")
+        const poemList2 = poemList1.filter( poem =>  poem.id != 38)
+        const poemList3 = poemList2.filter( poem =>  poem.id != 36)
+        const poemListReady = poemList3.filter( poem => poem.id != 32)
+        this.props.setPoemList(poemListReady)
+        this.props.setDisplayType("")
       })
-  
+
 }
 
   render() {

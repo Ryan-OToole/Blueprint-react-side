@@ -37,7 +37,8 @@ class RegistrationForm extends Component {
     return (
       <React.Fragment>
         <h3>Badass Poetry Presents</h3>
-        
+        <p>Register then login and create your own poems, share poems with the community, and use the Markov Generator to play with</p>
+          <img src="https://www.selfpublishbooks.ie/wp-content/uploads/2016/04/poetry-pencil.jpg" alt="" height="200" width="200" />
         <Grid>
           <Grid.Row centered>
             <Segment padded='very' style={{width: '40%'}}>
@@ -58,7 +59,7 @@ class RegistrationForm extends Component {
                   onChange={this.handleChange}
                   value={this.state.password}
                 />
-              <Form.Button type="submit" color='green' content="Register" />
+              <Form.Button type="submit" color='blue' content="Register" />
               </Form>
             </Segment>
           </Grid.Row>
