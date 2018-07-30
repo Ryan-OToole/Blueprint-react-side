@@ -37,6 +37,7 @@ class RegistrationForm extends Component {
     return (
       <React.Fragment>
         <h3>Badass Poetry Presents</h3>
+        
         <Grid>
           <Grid.Row centered>
             <Segment padded='very' style={{width: '40%'}}>

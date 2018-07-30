@@ -6,7 +6,6 @@ class PoemList extends Component {
 
   mapPoems = () => {
     return this.props.poemList.map( poem => {
-      console.log(poem)
       return <Poem poem={poem} key={poem.id} />
     })
   }

@@ -7,6 +7,10 @@ export default class Adapter {
               .then(res => res.json())
   }
 
+  static getPoemsAll() {
+    return fetch(URL)
+              .then(res => res.json())
+  }
 
   static postPoem(poemTitle, poemBody, id) {
     const config = {
