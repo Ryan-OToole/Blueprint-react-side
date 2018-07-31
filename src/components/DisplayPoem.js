@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import Adapter from '../Adapter';
 import { setPoemList, setCurrentPoem, setDisplayType } from '../actions/index'
+import { Button } from 'semantic-ui-react'
 
 class DisplayPoem extends Component {
 
@@ -20,8 +21,8 @@ class DisplayPoem extends Component {
       <div id="poem-details" >
         <h3> {this.props.currentPoemTitle} </h3>
         <p> {this.props.currentPoemBody} </p>
-        <button onClick={this.props.setDisplayType}> Edit Poem </button>
-        <button onClick={ () => {this.deletePoemFromServer(this.props.currentPoem)}}> Delete Poem </button>
+          <Button basic color='green' onClick={this.props.setDisplayType}>Edit Poem</Button>
+          <Button basic color='red' onClick={ () => {this.deletePoemFromServer(this.props.currentPoem)}}>Delete Poem </Button>
       </div>
     )
   }

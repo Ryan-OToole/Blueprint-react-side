@@ -19,9 +19,6 @@ class LoginForm extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    // console.log(this.state)
-
-    // WE NEED A HEADER!!
     fetch(`http://localhost:3000/sessions/`, {
       method: 'POST',
       headers: {
@@ -31,22 +28,20 @@ class LoginForm extends Component {
     })
       .then(res => res.json())
       .then(json => {
+      if(json.errors) {
+        alert(`${json.errors}`)
+      }
+      else {
         localStorage.setItem('token', json.token);
         this.props.updateCurrentUser(json)
         this.props.history.push("/poems");
-      })
+      }
+    })
   }
 
   componentWillMount() {
     document.body.className = 'background_image'
   }
-
-
-
-
-
-
-
 
   render() {
     return (

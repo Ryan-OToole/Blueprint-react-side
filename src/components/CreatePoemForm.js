@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux"
-import { form } from 'semantic-ui-react';
+import { form, Button } from 'semantic-ui-react';
 import Adapter from '../Adapter';
-import { setPoemList, setCurrentPoem, controlledComponent, setDisplayType } from '../actions/index'
+import { setPoemList, setCurrentPoem, controlledComponent, setDisplayType, clearCreateForm } from '../actions/index'
 
 class CreatePoemForm extends Component {
 
@@ -15,6 +15,7 @@ class CreatePoemForm extends Component {
         this.props.updatePoemList(poemListUpdated)
         this.props.setCurrentPoem(poem)
         this.props.setDisplayType()
+        this.props.clearCreateForm("")
       })
 }
 
@@ -36,7 +37,7 @@ class CreatePoemForm extends Component {
                 cols="50"
                 onChange={this.props.handleChange}
                 value={this.props.body}></textarea><br/>
-              <button type='submit'>Create Poem</button>
+              <Button basic color='yellow' type='submit'> Create Poem </Button>
           </form>
         </div>
       )
@@ -65,6 +66,9 @@ class CreatePoemForm extends Component {
       },
       setCurrentPoem: (poem) => {
         dispatch(setCurrentPoem(poem))
+      },
+      clearCreateForm: (string) => {
+        dispatch(clearCreateForm(string))
       }
     }
   }

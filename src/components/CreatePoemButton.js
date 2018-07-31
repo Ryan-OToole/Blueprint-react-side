@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { setDisplayType } from '../actions/index'
+import { Button } from 'semantic-ui-react'
 
 class CreatePoemButton extends Component {
 
   render() {
     return (
       <div>
-        <button onClick={this.props.setDisplayType}>Create Poem</button>
+        <Button color='green' onClick={this.props.setDisplayType}>Create Poem</Button>
       </div>
     )
   }

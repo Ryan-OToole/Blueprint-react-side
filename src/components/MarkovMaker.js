@@ -3,6 +3,7 @@ import { connect } from "react-redux"
 import '../App.css';
 import MarkovFillerBtns from './MarkovFillerBtns'
 import { controlledComponent, clearMarkov, setMarkovOutput } from '../actions/index'
+import { Button } from 'semantic-ui-react'
 
 function Markov(sourceText, order) {
 
@@ -99,7 +100,7 @@ class MarkovMaker extends Component {
               cols="50"
               onChange={this.props.handleMarkov}
               value={this.props.markov}></textarea><br />
-            <button type='submit'>Markov this Poem</button>
+            <Button color='violet' type='submit'>Generate new text</Button>
           </form>
       </div>
     )

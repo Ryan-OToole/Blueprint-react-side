@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { form } from 'semantic-ui-react';
+import { form, Button } from 'semantic-ui-react';
 import Adapter from '../Adapter';
 import { setPoemList, setCurrentPoem, controlledComponent, setDisplayType } from '../actions/index'
 
@@ -35,7 +35,7 @@ class UpdatePoemForm extends Component {
                 cols="50"
                 onChange={this.props.handleChange}
                 value={this.props.currentPoemBody}></textarea><br/>
-              <button type='submit'>Update Poem</button>
+              <Button basic color='blue' type='submit'>Update Poem</Button>
           </form>
         </div>
       )

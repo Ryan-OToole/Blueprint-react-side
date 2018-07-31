@@ -30,6 +30,8 @@ const reducer = (state = defaultState, action) => {
       return {...state, markovOutput: action.payload}
     case "UPDATE_CURRENT_USER":
       return {...state, currentUser: action.payload}
+    case "CLEAR_CREATE_FORM":
+      return {...state, title: action.payload, body: action.payload}
 
     default:
       return state

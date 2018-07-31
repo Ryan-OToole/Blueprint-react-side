@@ -54,6 +54,14 @@ export function updateCurrentUser(user) {
   }
 }
 
+export function clearCreateForm(string) {
+  return {
+    type: "CLEAR_CREATE_FORM",
+    payload: string
+  }
+}
+
+
 //
 // case "TITLE_AND_BODY":
 //   return {...state, [action.payload.target.name]: action.payload.target.value}

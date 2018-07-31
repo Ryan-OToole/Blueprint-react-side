@@ -3,6 +3,7 @@ import { connect } from "react-redux"
 import '../App.css';
 import Adapter from '../Adapter'
 import { setMarkovInput } from '../actions/index'
+import { Button } from 'semantic-ui-react'
 
 
 
@@ -20,10 +21,11 @@ class MarkovFillerBtns extends Component {
 
       return (
       <div>
-          Load Text From:
-          <button onClick={() => {this.handleClick(36)}}>Grimm Bros</button>
-          <button onClick={() => {this.handleClick(38)}}>Emily Dickinson</button>
-          <button onClick={() => {this.handleClick(32)}}>Random Poems</button>
+          <Button basic color='red' onClick={() => {this.handleClick(36)}}>Grimm Bros</Button>
+          <Button basic color='yellow' onClick={() => {this.handleClick(38)}}>Emily Dickinson</Button>
+          <Button basic color='green' onClick={() => {this.handleClick(32)}}>Ryan's Poems</Button>
+          <Button basic color='blue' onClick={() => {this.handleClick(36)}}>The Doors</Button>
+          <Button basic color='teal' onClick={() => {this.handleClick(36)}}>Another Source</Button>
       </div>
       )
     }

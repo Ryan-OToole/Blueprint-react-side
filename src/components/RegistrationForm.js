@@ -26,11 +26,17 @@ class RegistrationForm extends Component {
     })
       .then(res => res.json())
       .then(json => {
-        console.log("json now", json);
-        localStorage.setItem('token', json.token);
-        localStorage.setItem('user', json.username)
-        this.props.history.push("/");
-      })
+        if (json.username === undefined) {
+          alert('Username taken choose another');
+        }
+        else {
+          alert(`Welcome ${json.username}. Please log in...`);
+         console.log("json now", json);
+         localStorage.setItem('token', json.token);
+         localStorage.setItem('user', json.username)
+         this.props.history.push("/");
+      }
+    })
   }
 
   componentWillMount() {

@@ -28,7 +28,7 @@ class Poem extends Component {
                   Add to Markov
                 </Button>
                 <Button basic color='red'>
-                  Community
+                  Change me
                 </Button>
               </div>
             </Card.Content>
