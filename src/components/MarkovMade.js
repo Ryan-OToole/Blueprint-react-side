@@ -12,10 +12,10 @@ class MarkovMade extends Component {
     Adapter.postPoem("Flinstone Space Jam", this.props.markovOutput)
         .then( poem => {
           const poemListUpdated = Array.from(this.props.poemList)
-          poemListUpdated.push(poem)
+          poemListUpdated.unshift(poem)
           this.props.updatePoemList(poemListUpdated)
           this.props.setCurrentPoem(poem)
-          this.props.setDisplayType()
+          this.props.setDisplayType("display")
           this.props.clearMarkovOutput()
         })
 }
@@ -24,10 +24,10 @@ render() {
   return (
     <div>
       <form onSubmit={this.handleSubmit}>
-          Gold Content of Poem:<br/><textarea
+        Markov Output:<br/><textarea
             id='markov-body-output'
             name="markovOutput"
-            rows="10"
+            rows="20"
             cols="50"
             onChange={this.props.handleChange}
             value={this.props.markovOutput}></textarea>
@@ -43,26 +43,27 @@ render() {
 function mapStateToProps(state) {
   return {
     markovOutput: state.markovOutput,
-    poemList: state.poemList
+    poemList: state.poemList,
+    currentPoem: state.currentPoem
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    clearMarkovOutput: () => {
-      dispatch(setMarkovOutput(""))
-    },
     updatePoemList: (poemListUpdated) => {
       dispatch(setPoemList(poemListUpdated))
     },
     setCurrentPoem: (poem) => {
       dispatch(setCurrentPoem(poem))
     },
-    setDisplayType: () => {
-      dispatch(setDisplayType("display"))
+    setDisplayType: (type) => {
+      dispatch(setDisplayType(type))
     },
     handleChange: (event) => {
       dispatch(controlledComponent(event))
+    },
+    clearMarkovOutput: () => {
+      dispatch(setMarkovOutput(""))
     }
   }
 }

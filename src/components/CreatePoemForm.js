@@ -11,7 +11,7 @@ class CreatePoemForm extends Component {
     Adapter.postPoem(this.props.title, this.props.body, this.props.currentUser.id)
       .then( poem => {
         const poemListUpdated = Array.from(this.props.poemList)
-        poemListUpdated.push(poem)
+        poemListUpdated.unshift(poem)
         this.props.updatePoemList(poemListUpdated)
         this.props.setCurrentPoem(poem)
         this.props.setDisplayType()

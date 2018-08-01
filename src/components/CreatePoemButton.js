@@ -8,7 +8,7 @@ class CreatePoemButton extends Component {
   render() {
     return (
       <div>
-        <Button color='green' onClick={this.props.setDisplayType}>Create Poem</Button>
+        <Button color='teal' onClick={this.props.setDisplayType}>Create Poem</Button>
       </div>
     )
   }

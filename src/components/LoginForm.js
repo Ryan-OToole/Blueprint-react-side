@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Form, Grid, Segment } from 'semantic-ui-react';
 import { updateCurrentUser } from '../actions/index'
 import { connect } from "react-redux"
-import Adapter from '../Adapter'
 import { Link } from 'react-router-dom';
 
 class LoginForm extends Component {

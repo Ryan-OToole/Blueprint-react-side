@@ -11,6 +11,7 @@ import {Grid, Segment} from 'semantic-ui-react'
 import { withRouter } from 'react-router-dom'
 import Adapter from '../Adapter'
 import { setPoemList, setDisplayType, setCurrentPoem } from '../actions/index'
+// import FillerImage from './FillerImage'
 
 class PoemContainer extends Component {
 
@@ -28,7 +29,7 @@ class PoemContainer extends Component {
   }
 
   componentDidMount() {
-    document.body.className = null 
+    document.body.className = null
     if(this.props.currentUser) {
       if(this.props.poemList !== [])
       this.props.setDisplayType("")

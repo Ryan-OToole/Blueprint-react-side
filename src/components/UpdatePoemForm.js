@@ -11,7 +11,7 @@ class UpdatePoemForm extends Component {
     Adapter.patchPoem(this.props.currentPoemTitle, this.props.currentPoemBody, this.props.currentPoem)
       .then( poem => {
         const newPoemList = this.props.poemList.filter( poem => poem.id !== this.props.currentPoem.id)
-        newPoemList.push(poem)
+        newPoemList.unshift(poem)
         this.props.updatePoemList(newPoemList)
         this.props.setCurrentPoem(poem)
         this.props.setDisplayType()

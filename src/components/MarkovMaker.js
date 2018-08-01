@@ -93,10 +93,10 @@ class MarkovMaker extends Component {
       <div>
           <MarkovFillerBtns />
         <form onSubmit={this.handleSubmit}>
-            Base Content For Poem:<br/><textarea
+          Markov Input:<br/><textarea
               id='markov-body-input'
               name="markov"
-              rows="10"
+              rows="20"
               cols="50"
               onChange={this.props.handleMarkov}
               value={this.props.markov}></textarea><br />

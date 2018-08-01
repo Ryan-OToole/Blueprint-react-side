@@ -11,8 +11,9 @@ const defaultState = {
   currentUser: null
 }
 
-const reducer = (state = defaultState, action) => {
 
+const reducer = (state = defaultState, action) => {
+  
   switch(action.type) {
     case "SET_POEMLIST":
       return {...state, poemList: action.payload}

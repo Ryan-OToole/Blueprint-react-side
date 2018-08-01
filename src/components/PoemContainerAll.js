@@ -11,6 +11,7 @@ import {Grid, Segment} from 'semantic-ui-react'
 import { withRouter } from 'react-router-dom'
 import Adapter from '../Adapter'
 import { setPoemList, setDisplayType, setCurrentPoem } from '../actions/index'
+// import FillerImage from './FillerImage'
 
 class PoemContainerAll extends Component {
 
@@ -34,12 +35,18 @@ class PoemContainerAll extends Component {
         for (let poem of poems){
           poemList.push(poem)
         }
-        const poemListReady = poemList.filter( poem =>  poem.id != 38 && poem.id != 36 && poem.id != 32)
+        const poemListFilter = poemList.filter( poem =>  poem.id != 38 && poem.id != 36 && poem.id != 32 && poem.id != 96)
+        const poemListReady = []
+        for (let poem of poems) {
+          if (!poemListReady.includes(poem)) {
+            poemListReady.push(poem)
+          }
+        }
         this.props.setPoemList(poemListReady)
         this.props.setDisplayType("")
       })
-
 }
+
 
   render() {
     return (

@@ -3,7 +3,6 @@ import '../App.css';
 import LoginForm from './LoginForm';
 import RegistrationForm from './RegistrationForm'
 import { connect } from "react-redux"
-import Adapter from '../Adapter'
 import { setPoemList } from '../actions/index'
 import NavBar from './NavBar'
 import { Route, withRouter, Switch } from 'react-router-dom'
@@ -34,14 +33,18 @@ class App extends Component {
 }
 
 function mapStateToProps(state) {
-  currentUser: state.currentUser
+  return {
+    currentUser: state.currentUser
+  }
 }
 
 function mapDispatchToProps(dispatch){
+  return {
     setPoemList: (poemsArr) => {
       dispatch(setPoemList(poemsArr))
     }
   }
+}
 
 
 
