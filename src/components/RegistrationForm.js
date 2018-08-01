@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Form, Grid, Segment } from 'semantic-ui-react';
+import { connect } from "react-redux"
+import { updateCurrentUser } from '../actions/index'
 
 
 class RegistrationForm extends Component {
@@ -30,14 +32,35 @@ class RegistrationForm extends Component {
           alert('Username taken choose another');
         }
         else {
-          alert(`Welcome ${json.username}. Please log in...`);
-         console.log("json now", json);
-         localStorage.setItem('token', json.token);
-         localStorage.setItem('user', json.username)
-         this.props.history.push("/");
+
+    fetch(`http://localhost:3000/sessions/`, {
+      method: 'POST',
+      headers: {
+        "Content-Type": 'application/json'
+      },
+      body: JSON.stringify(this.state)
+    })
+      .then(res => res.json())
+      .then(json => {
+      if(json.errors) {
+        alert(`${json.errors}`)
+      }
+      else {
+        localStorage.setItem('token', json.token);
+        localStorage.setItem('user', json.username)
+        this.props.updateCurrentUser(json)
+        this.props.history.push("/poems");
+          }
+        })
       }
     })
   }
+
+
+
+
+
+
 
   componentWillMount() {
     document.body.className = 'background_image'
@@ -76,4 +99,18 @@ class RegistrationForm extends Component {
   }
 }
 
-export default RegistrationForm;
+
+function mapStateToProps(state) {
+  return {
+    currentUser: state.currentUser
+  }
+}
+
+function mapDispatchToProps(dispatch){
+  return {
+    updateCurrentUser: (user) => {
+      dispatch(updateCurrentUser(user))
+    }
+  }
+}
+  export default connect(mapStateToProps, mapDispatchToProps)(RegistrationForm)
