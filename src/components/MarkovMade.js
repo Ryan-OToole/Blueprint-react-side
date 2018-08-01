@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import '../App.css';
 import Adapter from '../Adapter';
-import { setPoemList, setCurrentPoem, setDisplayType, setMarkovOutput, controlledComponent } from '../actions/index'
+import { setPoemList, setCurrentPoem, setDisplayType, setMarkovOutput, controlledComponent, clearMarkovOutputTitle } from '../actions/index'
 import { Button } from 'semantic-ui-react'
 
 class MarkovMade extends Component {
@@ -12,7 +12,7 @@ class MarkovMade extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault()
-      Adapter.postPoem("Name me", this.props.markovOutput, this.props.currentUser.id)
+      Adapter.postPoem(this.props.title, this.props.markovOutput, this.props.currentUser.id)
         .then( poem => {
           const poemListUpdated = Array.from(this.props.poemList)
           poemListUpdated.unshift(poem)
@@ -20,6 +20,7 @@ class MarkovMade extends Component {
           this.props.setCurrentPoem(poem)
           this.props.setDisplayType("display")
           this.props.clearMarkovOutput()
+          this.props.clearMarkovOutputTitle()
         })
 }
 
@@ -27,6 +28,13 @@ render() {
   return (
     <div>
       <form onSubmit={this.handleSubmit}>
+        Title:<br/><input
+           id='markov-title-output'
+           name="title"
+           type='text'
+           size="30"
+           onChange={this.props.handleChange}
+           value={this.props.title} /><br/>
         Markov Output:<br/><textarea
             id='markov-body-output'
             name="markovOutput"
@@ -48,7 +56,8 @@ function mapStateToProps(state) {
     markovOutput: state.markovOutput,
     poemList: state.poemList,
     currentPoem: state.currentPoem,
-    currentUser: state.currentUser
+    currentUser: state.currentUser,
+    title: state.title
   }
 }
 
@@ -68,6 +77,9 @@ function mapDispatchToProps(dispatch) {
     },
     clearMarkovOutput: () => {
       dispatch(setMarkovOutput(""))
+    },
+    clearMarkovOutputTitle: () => {
+      dispatch(clearMarkovOutputTitle(""))
     }
   }
 }

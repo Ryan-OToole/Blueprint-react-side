@@ -61,7 +61,9 @@ export function clearCreateForm(string) {
   }
 }
 
-
-//
-// case "TITLE_AND_BODY":
-//   return {...state, [action.payload.target.name]: action.payload.target.value}
+export function clearMarkovOutputTitle(string) {
+  return {
+    type: "CLEAR_MARKOV_OUTPUT_TITLE",
+    payload: string
+  }
+}

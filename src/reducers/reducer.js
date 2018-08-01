@@ -13,7 +13,7 @@ const defaultState = {
 
 
 const reducer = (state = defaultState, action) => {
-  
+
   switch(action.type) {
     case "SET_POEMLIST":
       return {...state, poemList: action.payload}
@@ -33,6 +33,8 @@ const reducer = (state = defaultState, action) => {
       return {...state, currentUser: action.payload}
     case "CLEAR_CREATE_FORM":
       return {...state, title: action.payload, body: action.payload}
+    case "CLEAR_MARKOV_OUTPUT_TITLE":
+      return {...state, title: action.payload}
 
     default:
       return state
