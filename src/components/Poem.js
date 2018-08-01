@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Button, Card, Image } from 'semantic-ui-react'
 import { setCurrentPoem, setDisplayType, setMarkovInput, setPoemList } from '../actions/index'
-import Adapter from '../Adapter'
+
 
 class Poem extends Component {
 
@@ -15,14 +15,7 @@ class Poem extends Component {
     return this.props.poem.body.length >= 50  ? `${this.props.poem.body.slice(0,50)}...` : this.props.poem.body
   }
 
-  handleAddition = (poemTitle, poemBody) => {
-    Adapter.postPoem(poemTitle, poemBody, this.props.currentUser.id)
-      .then( poem => {
-        const poemListUpdated = Array.from(this.props.poemList)
-        poemListUpdated.unshift(poem)
-        this.props.setPoemList(poemListUpdated)
-    })
-  }
+
 
   render() {
     return (
@@ -40,9 +33,6 @@ class Poem extends Component {
               <div className='ui two buttons'>
                 <Button basic color='green' onClick={() => {this.props.setMarkovInput(this.props.poem.body)}}>
                   Add to Markov
-                </Button>
-                <Button basic color='blue' onClick={() => {this.handleAddition(this.props.poem.title, this.props.poem.body)}}>
-                  Add to My Poems
                 </Button>
               </div>
             </Card.Content>

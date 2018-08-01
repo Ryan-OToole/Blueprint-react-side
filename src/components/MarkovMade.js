@@ -7,9 +7,12 @@ import { Button } from 'semantic-ui-react'
 
 class MarkovMade extends Component {
 
+
+
+
   handleSubmit = (event) => {
     event.preventDefault()
-    Adapter.postPoem("Flinstone Space Jam", this.props.markovOutput)
+      Adapter.postPoem("Name me", this.props.markovOutput, this.props.currentUser.id)
         .then( poem => {
           const poemListUpdated = Array.from(this.props.poemList)
           poemListUpdated.unshift(poem)
@@ -44,7 +47,8 @@ function mapStateToProps(state) {
   return {
     markovOutput: state.markovOutput,
     poemList: state.poemList,
-    currentPoem: state.currentPoem
+    currentPoem: state.currentPoem,
+    currentUser: state.currentUser
   }
 }
 

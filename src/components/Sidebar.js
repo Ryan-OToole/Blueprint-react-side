@@ -5,6 +5,7 @@ import '../App.css';
 
 class Sidebar extends Component {
 
+
   render() {
     return (
       <div id="sidebar" >
