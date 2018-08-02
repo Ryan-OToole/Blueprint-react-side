@@ -93,15 +93,16 @@ class MarkovMaker extends Component {
       <div>
           <MarkovFillerBtns />
         <form onSubmit={this.handleSubmit}>
-          Markov Input:<br/><textarea
+            <br/><textarea
               id='markov-body-input'
               name="markov"
               rows="20"
               cols="50"
               onChange={this.props.handleMarkov}
               value={this.props.markov}></textarea><br />
-            <Button color='violet' type='submit'>Generate new text</Button>
+            <Button color='violet' type='submit'>To Jumble Me?</Button>
           </form>
+          <br />
       </div>
     )
   }

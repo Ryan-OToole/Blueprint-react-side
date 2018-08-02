@@ -35,7 +35,7 @@ class PoemContainerAll extends Component {
         for (let poem of poems){
           poemList.push(poem)
         }
-        const poemListFilter = poemList.filter( poem =>  poem.id !== 38 && poem.id !== 36 && poem.id !== 32 && poem.id !== 96)
+        const poemListFilter = poemList.filter( poem =>  poem.id !== 38 && poem.id !== 36 && poem.id !== 32 && poem.id !== 96 && poem.id !== 162)
         const poemListReady = []
         for (let poem of poemListFilter) {
           if (!poemListReady.includes(poem)) {

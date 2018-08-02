@@ -309,3 +309,63 @@ render() {
               .fillers {
                 background: url('https://cdn.pixabay.com/photo/2017/08/30/01/05/milky-way-2695569_1280.jpg');
               }
+
+
+
+
+              const poemListReady = []
+        for (let poem of poemListFilter) {
+          if (!poemListReady.includes(poem)) {
+            poemListReady.push(poem)
+          }
+        }
+
+
+
+
+
+
+
+
+
+
+
+        handleAddition = (poemTitle, poemBody) => {
+          Adapter.postPoem(poemTitle, poemBody, this.props.currentUser.id)
+            .then( poem => {
+              const poemListUpdated = Array.from(this.props.poemList)
+              poemListUpdated.unshift(poem)
+              this.props.setPoemList(poemListUpdated)
+          })
+        }
+
+
+        <Button basic color='blue' onClick={() => {this.handleAddition(this.props.poem.title, this.props.poem.body)}}>
+          Add to My Poems
+        </Button>
+
+
+
+
+
+
+
+        import React, { Component } from 'react';
+        import PoemList from './PoemList'
+        import CreatePoemButton from './CreatePoemButton'
+        import '../App.css';
+
+        class Sidebar extends Component {
+
+
+          render() {
+            return (
+              <div id="sidebar" >
+                <CreatePoemButton />
+                <PoemList />
+              </div>
+            )
+          }
+        }
+
+        export default Sidebar

@@ -32,7 +32,7 @@ class Poem extends Component {
             <Card.Content extra>
               <div className='ui two buttons'>
                 <Button basic color='green' onClick={() => {this.props.setMarkovInput(this.props.poem.body)}}>
-                  Add to Markov
+                  Add to Jumbler
                 </Button>
               </div>
             </Card.Content>

@@ -24,13 +24,13 @@ class CreatePoemForm extends Component {
     return (
         <div id="poem-details">
           <form onSubmit={this.handleSubmit}>
-              Title:<br/><input id='note-title-input'
+              <h3>Title:</h3><input id='note-title-input'
                name="title"
                type='text'
                size="30"
                onChange={this.props.handleChange}
                value={this.props.title} /><br/>
-              Body:<br/><textarea
+             <h3>Body:</h3><textarea
                 id='note-body-input'
                 name="body"
                 rows="10"

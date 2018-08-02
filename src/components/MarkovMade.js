@@ -28,14 +28,14 @@ render() {
   return (
     <div>
       <form onSubmit={this.handleSubmit}>
-        Title:<br/><input
+        <h3>Title:</h3><input
            id='markov-title-output'
            name="title"
            type='text'
            size="30"
            onChange={this.props.handleChange}
            value={this.props.title} /><br/>
-        Markov Output:<br/><textarea
+          <br/><textarea
             id='markov-body-output'
             name="markovOutput"
             rows="20"
