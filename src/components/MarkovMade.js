@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import '../App.css';
 import Adapter from '../Adapter';
-import { setPoemList, setCurrentPoem, setDisplayType, setMarkovOutput, controlledComponent, clearMarkovOutputTitle } from '../actions/index'
+import { setPoemList, setCurrentPoem, setDisplayType, setMarkovOutput, controlledComponent, clearMarkovOutputTitle, setMarkovInput } from '../actions/index'
 import { Button } from 'semantic-ui-react'
 
 class MarkovMade extends Component {
@@ -24,6 +24,11 @@ class MarkovMade extends Component {
         })
 }
 
+handleClick = () => {
+  this.props.setMarkovInput(this.props.markovOutput)
+  this.props.clearMarkovOutput()
+}
+
 render() {
   return (
     <div>
@@ -43,7 +48,8 @@ render() {
             onChange={this.props.handleChange}
             value={this.props.markovOutput}></textarea>
             <br />
-        <Button type='submit' color='teal'>Save me?</Button>
+        <Button type='submit' color='teal'>Save Me?</Button>
+        <Button color='blue' onClick={this.handleClick}>Rejumble Me?</Button>
       </form>
     </div>
     )
@@ -80,6 +86,9 @@ function mapDispatchToProps(dispatch) {
     },
     clearMarkovOutputTitle: () => {
       dispatch(clearMarkovOutputTitle(""))
+    },
+    setMarkovInput: (string) => {
+      dispatch(setMarkovInput(string))
     }
   }
 }
