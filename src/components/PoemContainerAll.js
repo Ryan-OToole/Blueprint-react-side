@@ -36,14 +36,8 @@ class PoemContainerAll extends Component {
           poemList.push(poem)
         }
         const poemListFilter = poemList.filter( poem =>  poem.id !== 38 && poem.id !== 36 && poem.id !== 32 && poem.id !== 96 && poem.id !== 162)
-        const poemListReady = []
-        for (let poem of poemListFilter) {
-          if (!poemListReady.includes(poem)) {
-            poemListReady.push(poem)
-          }
-        }
-        this.props.setPoemList(poemListReady)
-        this.props.setPoemListFilter(poemListReady)
+        this.props.setPoemList(poemListFilter)
+        this.props.setPoemListFilter(poemListFilter)
         this.props.setDisplayType("")
       })
 }

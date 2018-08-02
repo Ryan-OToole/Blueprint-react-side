@@ -11,7 +11,6 @@ class Sidebar extends Component {
   handleChange = (event) => {
 
     this.props.controlledComponent(event)
-
     const poemList = this.props.poemListFilter.filter( poem => {
       return poem.title.toLowerCase().includes(event.target.value.toLowerCase())
     })

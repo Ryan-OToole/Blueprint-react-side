@@ -5,6 +5,7 @@ import Poem from './Poem'
 class PoemList extends Component {
 
   mapPoems = () => {
+    debugger
     return this.props.poemList.map( poem => {
       return <Poem poem={poem} key={poem.id} />
     })

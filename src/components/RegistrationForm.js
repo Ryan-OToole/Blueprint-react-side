@@ -56,12 +56,6 @@ class RegistrationForm extends Component {
     })
   }
 
-
-
-
-
-
-
   componentWillMount() {
     document.body.className = 'background_image'
   }

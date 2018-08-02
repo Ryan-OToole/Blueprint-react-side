@@ -37,7 +37,7 @@ class PoemContainer extends Component {
         .then( poems => {
           const poemListUpdated = []
           for (let poem of poems){
-            poemListUpdated.push(poem)
+            poemListUpdated.unshift(poem)
             this.props.setCurrentPoem(poem)
             this.props.setPoemList(poemListUpdated)
             this.props.setPoemListFilter(poemListUpdated)

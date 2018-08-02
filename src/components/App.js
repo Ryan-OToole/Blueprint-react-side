@@ -32,24 +32,7 @@ class App extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    currentUser: state.currentUser
-  }
-}
-
-function mapDispatchToProps(dispatch){
-  return {
-    setPoemList: (poemsArr) => {
-      dispatch(setPoemList(poemsArr))
-    },
-    setPoemListFilter: (poemsArr) => {
-      dispatch(setPoemListFilter(poemsArr))
-    }
-  }
-}
 
 
 
-
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App))
+export default withRouter(App)

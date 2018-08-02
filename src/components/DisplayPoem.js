@@ -23,7 +23,7 @@ class DisplayPoem extends Component {
         <h3> {this.props.currentPoemTitle} </h3>
         <p> {this.props.currentPoemBody} </p>
           <Button basic color='blue' onClick={this.props.setDisplayType}>Edit Poem</Button>
-          <Button basic color='pink' onClick={ () => {this.deletePoemFromServer(this.props.currentPoem)}}>Delete Poem </Button>
+          <Button basic color='red' onClick={ () => {this.deletePoemFromServer(this.props.currentPoem)}}>Delete Poem </Button>
       </div>
     )
   }

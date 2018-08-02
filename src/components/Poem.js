@@ -60,9 +60,6 @@ const mapDispatchToProps = (dispatch) => {
       },
       setDisplayType: () => {
         dispatch(setDisplayType("display"))
-      },
-      setPoemList: (poemListUpdated) => {
-        dispatch(setPoemList(poemListUpdated))
       }
     }
   }
