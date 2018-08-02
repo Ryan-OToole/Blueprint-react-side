@@ -1,5 +1,6 @@
 const defaultState = {
   poemList: [],
+  poemListFilter: [],
   currentPoem: null,
   currentPoemTitle: null,
   currentPoemBody: null,
@@ -8,7 +9,8 @@ const defaultState = {
   displayType: "",
   markov: "",
   markovOutput: "",
-  currentUser: null
+  currentUser: null,
+  searchTerm: ""
 }
 
 
@@ -17,6 +19,8 @@ const reducer = (state = defaultState, action) => {
   switch(action.type) {
     case "SET_POEMLIST":
       return {...state, poemList: action.payload}
+    case "SET_POEMLIST_FILTER":
+      return {...state, poemListFilter: action.payload}
     case "SET_CURRENT_POEM":
       return {...state, currentPoem: action.payload, currentPoemTitle: action.payload.title, currentPoemBody: action.payload.body}
     case "CONTROLLED_COMPONENT":
@@ -35,7 +39,6 @@ const reducer = (state = defaultState, action) => {
       return {...state, title: action.payload, body: action.payload}
     case "CLEAR_MARKOV_OUTPUT_TITLE":
       return {...state, title: action.payload}
-
     default:
       return state
   }

@@ -10,7 +10,7 @@ import MarkovMade from './MarkovMade'
 import {Grid, Segment} from 'semantic-ui-react'
 import { withRouter } from 'react-router-dom'
 import Adapter from '../Adapter'
-import { setPoemList, setDisplayType, setCurrentPoem } from '../actions/index'
+import { setPoemList, setDisplayType, setCurrentPoem, setPoemListFilter } from '../actions/index'
 // import FillerImage from './FillerImage'
 
 class PoemContainerAll extends Component {
@@ -43,6 +43,7 @@ class PoemContainerAll extends Component {
           }
         }
         this.props.setPoemList(poemListReady)
+        this.props.setPoemListFilter(poemListReady)
         this.props.setDisplayType("")
       })
 }
@@ -79,7 +80,8 @@ function mapStateToProps(state) {
   return {
     currentUser: state.currentUser,
     displayType: state.displayType,
-    poemList: state.poemList
+    poemList: state.poemList,
+    poemListFilter: state.poemListFilter
   }
 }
 
@@ -87,6 +89,9 @@ function mapDispatchToProps(dispatch) {
     return {
   setPoemList:(poemsArr) => {
     dispatch(setPoemList(poemsArr))
+  },
+  setPoemListFilter: (poemsArr) => {
+    dispatch(setPoemListFilter(poemsArr))
   },
   setCurrentPoem:(poem) => {
     dispatch(setCurrentPoem(poem))

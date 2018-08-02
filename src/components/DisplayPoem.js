@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import Adapter from '../Adapter';
-import { setPoemList, setCurrentPoem, setDisplayType } from '../actions/index'
+import { setPoemList, setCurrentPoem, setDisplayType, setPoemListFilter } from '../actions/index'
 import { Button } from 'semantic-ui-react'
 
 class DisplayPoem extends Component {
@@ -12,6 +12,7 @@ class DisplayPoem extends Component {
     })
     Adapter.deletePoem(poemToDelete)
       .then(this.props.updatePoemList(newPoemList))
+      .then(this.props.setPoemListFilter(newPoemList))
       .then(this.props.setDisplayTypeNull())
       .then(this.props.setCurrentPoemState())
   }
@@ -33,7 +34,8 @@ const mapStateToProps = (state) => {
     currentPoem: state.currentPoem,
     currentPoemTitle: state.currentPoemTitle,
     currentPoemBody: state.currentPoemBody,
-    poemList: state.poemList
+    poemList: state.poemList,
+    poemListFilter: state.poemListFilter
   }
 }
 
@@ -41,6 +43,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     updatePoemList: (newPoemList) => {
       dispatch(setPoemList(newPoemList))
+    },
+    setPoemListFilter: (poemsArr) => {
+      dispatch(setPoemListFilter(poemsArr))
     },
     setCurrentPoemState: () => {
       dispatch(setCurrentPoem(""))

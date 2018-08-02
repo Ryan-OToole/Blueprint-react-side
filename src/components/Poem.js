@@ -64,7 +64,7 @@ const mapDispatchToProps = (dispatch) => {
       setPoemList: (poemListUpdated) => {
         dispatch(setPoemList(poemListUpdated))
       }
+    }
   }
-}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Poem)

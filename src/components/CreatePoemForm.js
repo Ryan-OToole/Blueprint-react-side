@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from "react-redux"
 import { form, Button } from 'semantic-ui-react';
 import Adapter from '../Adapter';
-import { setPoemList, setCurrentPoem, controlledComponent, setDisplayType, clearCreateForm } from '../actions/index'
+import { setPoemList, setCurrentPoem, controlledComponent, setDisplayType, clearCreateForm, setPoemListFilter } from '../actions/index'
 
 class CreatePoemForm extends Component {
 
@@ -13,6 +13,7 @@ class CreatePoemForm extends Component {
         const poemListUpdated = Array.from(this.props.poemList)
         poemListUpdated.unshift(poem)
         this.props.updatePoemList(poemListUpdated)
+        this.props.setPoemListFilter(poemListUpdated)
         this.props.setCurrentPoem(poem)
         this.props.setDisplayType()
         this.props.clearCreateForm("")
@@ -49,7 +50,8 @@ class CreatePoemForm extends Component {
       title: state.title,
       body: state.body,
       poemList: state.poemList,
-      currentUser: state.currentUser
+      currentUser: state.currentUser,
+      setPoemListFilter: state.poemListFilter
     }
   }
 
@@ -60,6 +62,9 @@ class CreatePoemForm extends Component {
       },
       updatePoemList: (poemListUpdated) => {
         dispatch(setPoemList(poemListUpdated))
+      },
+      setPoemListFilter: (poemsArr) => {
+        dispatch(setPoemListFilter(poemsArr))
       },
       setDisplayType: () => {
         dispatch(setDisplayType("display"))

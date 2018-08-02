@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import '../App.css';
 import Adapter from '../Adapter';
-import { setPoemList, setCurrentPoem, setDisplayType, setMarkovOutput, controlledComponent, clearMarkovOutputTitle, setMarkovInput } from '../actions/index'
+import { setPoemList, setCurrentPoem, setDisplayType, setMarkovOutput, controlledComponent, clearMarkovOutputTitle, setMarkovInput, setPoemListFilter } from '../actions/index'
 import { Button } from 'semantic-ui-react'
 
 class MarkovMade extends Component {
@@ -17,6 +17,7 @@ class MarkovMade extends Component {
           const poemListUpdated = Array.from(this.props.poemList)
           poemListUpdated.unshift(poem)
           this.props.updatePoemList(poemListUpdated)
+          this.props.setPoemListFilter(poemListUpdated)
           this.props.setCurrentPoem(poem)
           this.props.setDisplayType("display")
           this.props.clearMarkovOutput()
@@ -61,6 +62,7 @@ function mapStateToProps(state) {
   return {
     markovOutput: state.markovOutput,
     poemList: state.poemList,
+    poemListFilter: state.poemListFilter,
     currentPoem: state.currentPoem,
     currentUser: state.currentUser,
     title: state.title
@@ -71,6 +73,9 @@ function mapDispatchToProps(dispatch) {
   return {
     updatePoemList: (poemListUpdated) => {
       dispatch(setPoemList(poemListUpdated))
+    },
+    setPoemListFilter: (poemsArr) => {
+      dispatch(setPoemListFilter(poemsArr))
     },
     setCurrentPoem: (poem) => {
       dispatch(setCurrentPoem(poem))

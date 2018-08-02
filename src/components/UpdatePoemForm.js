@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { form, Button } from 'semantic-ui-react';
 import Adapter from '../Adapter';
-import { setPoemList, setCurrentPoem, controlledComponent, setDisplayType } from '../actions/index'
+import { setPoemList, setCurrentPoem, controlledComponent, setDisplayType, setPoemListFilter } from '../actions/index'
 
 class UpdatePoemForm extends Component {
 
@@ -47,7 +47,8 @@ class UpdatePoemForm extends Component {
       currentPoem: state.currentPoem,
       currentPoemTitle: state.currentPoemTitle,
       currentPoemBody: state.currentPoemBody,
-      poemList: state.poemList
+      poemList: state.poemList,
+      poemListFilter: state.poemListFilter
     }
   }
 
@@ -58,6 +59,9 @@ class UpdatePoemForm extends Component {
       },
       updatePoemList: (newPoemList) => {
         dispatch(setPoemList(newPoemList))
+      },
+      setPoemListFilter: (poemsArr) => {
+        dispatch(setPoemListFilter(poemsArr))
       },
       setDisplayType: () => {
         dispatch(setDisplayType("display"))

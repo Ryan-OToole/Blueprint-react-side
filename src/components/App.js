@@ -3,7 +3,7 @@ import '../App.css';
 import LoginForm from './LoginForm';
 import RegistrationForm from './RegistrationForm'
 import { connect } from "react-redux"
-import { setPoemList } from '../actions/index'
+import { setPoemList, setPoemListFilter } from '../actions/index'
 import NavBar from './NavBar'
 import { Route, withRouter, Switch } from 'react-router-dom'
 import PoemContainer from './PoemContainer'
@@ -42,6 +42,9 @@ function mapDispatchToProps(dispatch){
   return {
     setPoemList: (poemsArr) => {
       dispatch(setPoemList(poemsArr))
+    },
+    setPoemListFilter: (poemsArr) => {
+      dispatch(setPoemListFilter(poemsArr))
     }
   }
 }

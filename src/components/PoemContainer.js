@@ -10,7 +10,7 @@ import MarkovMade from './MarkovMade'
 import {Grid, Segment} from 'semantic-ui-react'
 import { withRouter } from 'react-router-dom'
 import Adapter from '../Adapter'
-import { setPoemList, setDisplayType, setCurrentPoem } from '../actions/index'
+import { setPoemList, setDisplayType, setCurrentPoem, setPoemListFilter } from '../actions/index'
 // import FillerImage from './FillerImage'
 
 class PoemContainer extends Component {
@@ -31,20 +31,21 @@ class PoemContainer extends Component {
   componentDidMount() {
     document.body.className = null
     if(this.props.currentUser) {
-      if(this.props.poemList !== [])
-      this.props.setDisplayType("")
-      Adapter.getPoems(this.props.currentUser.id)
-      .then( poems => {
-        const poemListUpdated = []
-        for (let poem of poems){
-          poemListUpdated.push(poem)
-          this.props.setCurrentPoem(poem)
-        }
-        this.props.setPoemList(poemListUpdated)
-      })
+      if(this.props.poemList !== []) {
+        this.props.setDisplayType("")
+        Adapter.getPoems(this.props.currentUser.id)
+        .then( poems => {
+          const poemListUpdated = []
+          for (let poem of poems){
+            poemListUpdated.push(poem)
+            this.props.setCurrentPoem(poem)
+            this.props.setPoemList(poemListUpdated)
+            this.props.setPoemListFilter(poemListUpdated)
+          }
+        })
+      }
     }
-
-}
+  }
 
   render() {
     return (
@@ -77,7 +78,8 @@ function mapStateToProps(state) {
   return {
     currentUser: state.currentUser,
     displayType: state.displayType,
-    poemList: state.poemList
+    poemList: state.poemList,
+    poemListFilter: state.poemListFilter
   }
 }
 
@@ -85,6 +87,9 @@ function mapDispatchToProps(dispatch) {
     return {
   setPoemList:(poemsArr) => {
     dispatch(setPoemList(poemsArr))
+  },
+  setPoemListFilter: (poemsArr) => {
+    dispatch(setPoemListFilter(poemsArr))
   },
   setCurrentPoem:(poem) => {
     dispatch(setCurrentPoem(poem))

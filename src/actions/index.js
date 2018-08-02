@@ -5,6 +5,13 @@ export function setPoemList(poems) {
   }
 }
 
+export function setPoemListFilter(poems) {
+  return {
+    type: "SET_POEMLIST_FILTER",
+    payload: poems
+  }
+}
+
 export function setCurrentPoem(poem) {
   return {
     type: "SET_CURRENT_POEM",
