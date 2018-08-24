@@ -1,12 +1,17 @@
 import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import Adapter from '../Adapter'
+import { connect } from "react-redux";
+import { clearMarkovOutputTitle, clearMarkov, setMarkovOutput  } from '../actions/index'
 
 class NavBar extends Component {
 
   handleClick = (event) => {
       localStorage.removeItem('token')
       localStorage.removeItem('user')
+      this.props.clearMarkovOutputTitle("")
+      this.props.clearMarkov("")
+      this.props.setMarkovOutput("")
   }
 
 
@@ -37,4 +42,26 @@ class NavBar extends Component {
   }
 }
 
-export default NavBar
+function mapStateToProps(state) {
+  return {
+    markov: state.markov,
+    markovOutput: state.markovOutput,
+    title: state.title
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    clearMarkov: () => {
+      dispatch(clearMarkov(""))
+    },
+    setMarkovOutput: (markovOutput) => {
+      dispatch(setMarkovOutput(markovOutput))
+    },
+    clearMarkovOutputTitle: (string) => {
+      dispatch(clearMarkovOutputTitle(string))
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(NavBar)
