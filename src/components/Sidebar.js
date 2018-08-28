@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PoemList from './PoemList'
 import CreatePoemButton from './CreatePoemButton'
 import '../App.css';
-import { Input } from 'semantic-ui-react'
+// import { Input } from 'semantic-ui-react'
 import { connect } from "react-redux"
 import { setPoemList, setPoemListFilter, controlledComponent } from '../actions/index'
 

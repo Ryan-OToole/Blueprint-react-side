@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import '../App.css';
 import LoginForm from './LoginForm';
 import RegistrationForm from './RegistrationForm'
-import { connect } from "react-redux"
-import { setPoemList, setPoemListFilter } from '../actions/index'
 import NavBar from './NavBar'
 import { Route, withRouter, Switch } from 'react-router-dom'
 import PoemContainer from './PoemContainer'
@@ -12,8 +10,6 @@ import About from './About'
 
 
 class App extends Component {
-
-
 
   render() {
 
@@ -32,24 +28,4 @@ class App extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    currentUser: state.currentUser
-  }
-}
-
-function mapDispatchToProps(dispatch){
-  return {
-    setPoemList: (poemsArr) => {
-      dispatch(setPoemList(poemsArr))
-    },
-    setPoemListFilter: (poemsArr) => {
-      dispatch(setPoemListFilter(poemsArr))
-    }
-  }
-}
-
-
-
-
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App))
+export default withRouter(App)
