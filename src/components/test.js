@@ -6,13 +6,12 @@ import { clearMarkovOutputTitle, clearMarkov, setMarkovOutput  } from '../action
 
 class NavBar extends Component {
 
-  handleClick = () => {
+  handleClick = (event) => {
       this.props.clearMarkovOutputTitle("")
-      this.props.clearMarkov()
-  }
-
-  handleLoginClick = () => {
-    
+      this.props.clearMarkov("")
+      this.props.setMarkovOutput("")
+      localStorage.removeItem('token')
+      localStorage.removeItem('user')
   }
 
 
@@ -28,12 +27,12 @@ class NavBar extends Component {
             <Link className="ui basic inverted item" to="/community">Community Feed</Link>
           </div>
           <div className="right menu">
-            <Link className="ui basic inverted item" to="/" onClick={this.handleClick} >Logout</Link>
+            <Link className="ui basic inverted item" to="/" onClick={() => {this.handleClick()}} >Logout</Link>
           </div>
       </Fragment>
           :
         <div className="right menu">
-          <Link className="ui basic inverted item" to="/" onClick={this.handleLoginClick} >Login</Link>
+          <Link className="ui basic inverted item" to="/">Login</Link>
           <Link className="ui basic inverted item" to="/register">Register</Link>
           <Link className="ui basic inverted item" to="/about">About</Link>
         </div>
