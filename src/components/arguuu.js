@@ -1,371 +1,69 @@
 import React, { Component, Fragment } from 'react';
-import '../App.css';
-import LoginForm from './LoginForm';
-import RegistrationForm from './RegistrationForm'
-import Sidebar from './Sidebar'
-import CreatePoemForm from './CreatePoemForm'
-import DisplayPoem from './DisplayPoem'
-import { connect } from "react-redux"
-import UpdatePoemForm from './UpdatePoemForm'
+import { Link } from 'react-router-dom';
 import Adapter from '../Adapter'
-import MarkovMaker from './MarkovMaker'
-import MarkovMade from './MarkovMade'
-import {Grid, Segment} from 'semantic-ui-react'
-import MarkovFillerBtns from './MarkovFillerBtns'
-import { setPoemList } from '../actions/index'
-import NavBar from './NavBar'
-import { Link, Route, withRouter, Switch, Redirect } from 'react-router-dom'
-import Home from './Home'
+import { connect } from "react-redux";
+import { clearMarkovOutputTitle, clearMarkov, setMarkovOutput  } from '../actions/index'
+import { withRouter } from 'react-router-dom'
 
-class App extends Component {
+class NavBar extends Component {
 
-  componentDidMount() {
-    Adapter.getPoems()
-      .then(this.props.fillPoemList)
+  handleClick = (event) => {
+      // localStorage.removeItem('token')
+      // localStorage.removeItem('user')
+      localStorage.clear();
+      this.props.clearMarkovOutputTitle("")
+      this.props.clearMarkov("")
+      this.props.setMarkovOutput("")
   }
-
-  renderDisplayType = () => {
-    switch(this.props.displayType) {
-        case "display":
-          return <DisplayPoem />
-        case "create":
-          return <CreatePoemForm />
-        case "update":
-          return <UpdatePoemForm />
-        default:
-          return null
-    }
-  }
-
 
 
 
 
   render() {
-
     return (
-      <div className="App">
-
-      <Switch>
-
-                      <Fragment>
-                        <Route exact path="/register" component={(props) => <RegistrationForm {...props} />} />
-                        <Route exact path="/login" component={(props) => <LoginForm {...props} />} />
-                      </Fragment>
-      <Route exact path="/Poems" component={(props) => {
-               return (
-                      <Fragment>
-                            <NavBar { ...props } />
-                            <Grid columns={3} divided>
-                             <Grid.Row stretched>
-                               <Grid.Column centered="true">
-                                 <Segment><Sidebar /></Segment>
-                               </Grid.Column>
-                               <Grid.Column>
-                                 <Segment>{ this.renderDisplayType() }</Segment>
-                               </Grid.Column>
-                               <Grid.Column>
-                                 <Segment>  <MarkovMaker /> <MarkovMade /> </Segment>
-                               </Grid.Column>
-                             </Grid.Row>
-                           </Grid>
-                         </Fragment>
-
-                  )
-                }
-             }
-           }
-          </Switch>
-     </div>
+      <div className="ui inverted icon large blue menu" id="navBar" >
+        { Adapter.isLoggedIn() ?
+      <Fragment>
+          <div className="left menu">
+            <Link className="ui basic inverted item" to="/poems" >My Poems</Link>
+            <Link className="ui basic inverted item" to="/community">Community Feed</Link>
+          </div>
+          <div className="right menu">
+            <Link className="ui basic inverted item" to="/" onClick={() =>this.handleClick}>Logout</Link>
+          </div>
+      </Fragment>
+          :
+        <div className="right menu">
+          <Link className="ui basic inverted item" to="/">Login</Link>
+          <Link className="ui basic inverted item" to="/register">Register</Link>
+          <Link className="ui basic inverted item" to="/about">About</Link>
+        </div>
+      }
+      </div>
     )
   }
 }
 
-
-
-                      <Fragment>
-                        <Route exact path="/register" component={(props) => <RegistrationForm {...props} />} />
-                        <Route exact path="/login" component={(props) => <LoginForm {...props} />} />
-                      </Fragment>
-
-
 function mapStateToProps(state) {
   return {
-    displayType: state.displayType
+    markov: state.markov,
+    markovOutput: state.markovOutput,
+    title: state.title
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    fillPoemList: (poemsArr) => {
-      dispatch(setPoemList(poemsArr))
+    clearMarkov: () => {
+      dispatch(clearMarkov(""))
+    },
+    setMarkovOutput: (markovOutput) => {
+      dispatch(setMarkovOutput(markovOutput))
+    },
+    clearMarkovOutputTitle: (string) => {
+      dispatch(clearMarkovOutputTitle(string))
     }
   }
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App))
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-render() {
-
-  return (
-    <div className="App">
-
-
-    <Switch>
-
-
-      <Route exact path="/login" component={(props) => {
-          return ( <LoginForm {...props} /> ) }} />
-      <Route exact path="/registrationform" component={(props) => {
-          return  ( <RegistrationForm {...props} /> ) }} />
-
-
-      <Route exact path="/" component={(props) => {
-             return (
-                  <Fragment>
-                    <NavBar { ...props } />
-                    <Home { ...props } />
-                  </Fragment>
-             )
-           }
-         }
-      />
-
-
-
-    <Route exact path="/Poems" component={(props) => {
-             return (
-               <Fragment>
-                     <NavBar { ...props } />
-                     <Grid columns={3} divided>
-                      <Grid.Row stretched>
-                        <Grid.Column centered="true">
-                          <Segment><Sidebar /></Segment>
-                        </Grid.Column>
-                        <Grid.Column>
-                          <Segment>{ this.renderDisplayType() }</Segment>
-                        </Grid.Column>
-                        <Grid.Column>
-                          <Segment>  <MarkovMaker /> <MarkovMade /> </Segment>
-                        </Grid.Column>
-                      </Grid.Row>
-                    </Grid>
-                  </Fragment>
-
-            )
-           }
-         }
-      />
-  </Switch>
-   </div>
-  )
-}
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  render() {
-
-    return (
-      <div className="App">
-        <Switch>
-
-
-
-          <Route exact path="/Poems" component={(props) => {
-                   return (
-                     <Fragment>
-                           <NavBar { ...props } />
-                           <Grid columns={3} divided>
-                            <Grid.Row stretched>
-                              <Grid.Column centered="true">
-                                <Segment><Sidebar /></Segment>
-                              </Grid.Column>
-                              <Grid.Column>
-                                <Segment>{ this.renderDisplayType() }</Segment>
-                              </Grid.Column>
-                              <Grid.Column>
-                                <Segment>  <MarkovMaker /> <MarkovMade /> </Segment>
-                              </Grid.Column>
-                            </Grid.Row>
-                          </Grid>
-                        </Fragment>
-
-
-
-                      <Route exact path="/login" component={(props) => {
-                          return ( <LoginForm {...props} /> ) }} />
-
-                      <Route exact path="/registrationform" component={(props) => {
-                          return  ( <RegistrationForm {...props} /> ) }} />
-
-                      <Route exact path="/" component={(props) => {
-                             return (
-                                  <Fragment>
-                                    <NavBar { ...props } />
-                                    <Home { ...props } />
-                                  </Fragment>
-                             )
-                           }
-                         }
-                      />
-
-          </Switch>
-       </div>
-        }
-      }
-    }
-  }
-
-
-
-
-
-  render() {
-
-    return (
-
-      <div>
-        <switch>
-
-          <Route exact path="/" component={(props) => {
-                 return (
-                      <Fragment>
-                        <NavBar { ...props } />
-                        <Home { ...props } />
-                      </Fragment>
-                 )
-               }
-             }
-          />
-
-
-          <Route exact path="/Poems" component={(props) => {
-                   return (
-                     <Fragment>
-                           <NavBar { ...props } />
-                           <Grid columns={3} divided>
-                            <Grid.Row stretched>
-                              <Grid.Column centered="true">
-                                <Segment><Sidebar /></Segment>
-                              </Grid.Column>
-                              <Grid.Column>
-                                <Segment>{ this.renderDisplayType() }</Segment>
-                              </Grid.Column>
-                              <Grid.Column>
-                                <Segment>  <MarkovMaker /> <MarkovMade /> </Segment>
-                              </Grid.Column>
-                            </Grid.Row>
-                          </Grid>
-                        </Fragment>
-
-                  )
-                 }
-               }
-            />
-
-
-        </switch>
-      </div>
-  );
-
-
-
-          <i className="home icon" />
-
-              console.log(grimm.replace(/\W/g, ''))
-
-              .fillers {
-                background: url('https://cdn.pixabay.com/photo/2017/08/30/01/05/milky-way-2695569_1280.jpg');
-              }
-
-
-
-
-              const poemListReady = []
-        for (let poem of poemListFilter) {
-          if (!poemListReady.includes(poem)) {
-            poemListReady.push(poem)
-          }
-        }
-
-
-
-
-
-
-
-
-
-
-
-        handleAddition = (poemTitle, poemBody) => {
-          Adapter.postPoem(poemTitle, poemBody, this.props.currentUser.id)
-            .then( poem => {
-              const poemListUpdated = Array.from(this.props.poemList)
-              poemListUpdated.unshift(poem)
-              this.props.setPoemList(poemListUpdated)
-          })
-        }
-
-
-        <Button basic color='blue' onClick={() => {this.handleAddition(this.props.poem.title, this.props.poem.body)}}>
-          Add to My Poems
-        </Button>
-
-
-
-
-
-
-
-        import React, { Component } from 'react';
-        import PoemList from './PoemList'
-        import CreatePoemButton from './CreatePoemButton'
-        import '../App.css';
-
-        class Sidebar extends Component {
-
-
-          render() {
-            return (
-              <div id="sidebar" >
-                <CreatePoemButton />
-                <PoemList />
-              </div>
-            )
-          }
-        }
-
-        export default Sidebar
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(NavBar))

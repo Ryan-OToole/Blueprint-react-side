@@ -7,9 +7,6 @@ import { Button } from 'semantic-ui-react'
 
 class MarkovMade extends Component {
 
-
-
-
   handleSubmit = (event) => {
     event.preventDefault()
       Adapter.postPoem(this.props.title, this.props.markovOutput, this.props.currentUser.id)
@@ -49,9 +46,9 @@ render() {
             onChange={this.props.handleChange}
             value={this.props.markovOutput}></textarea>
             <br />
-        <Button type='submit' color='teal'>Save Me?</Button>
-        <Button color='blue' onClick={this.handleClick}>Rejumble Me?</Button>
+          <Button type='submit' color='teal'>Save Me?</Button>
       </form>
+      <Button color='blue' onClick={this.handleClick}>Rejumble Me?</Button>
     </div>
     )
   }

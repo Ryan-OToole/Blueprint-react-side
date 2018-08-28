@@ -8,6 +8,7 @@ import { devToolsEnhancer } from 'redux-devtools-extension';
 import reducer from "./reducers/reducer"
 import { Provider } from "react-redux"
 import { BrowserRouter } from 'react-router-dom'
+import { devToolsEnhancer } from 'redux-devtools-extension';
 // import 'semantic-ui-css/semantic.min.css'
 
 const store = createStore(reducer, /* preloadedState, */ devToolsEnhancer(

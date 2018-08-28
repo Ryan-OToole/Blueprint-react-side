@@ -100,7 +100,7 @@ class MarkovMaker extends Component {
               cols="50"
               onChange={this.props.handleMarkov}
               value={this.props.markov}></textarea><br />
-            <Button color='violet' type='submit'>To Jumble Me?</Button>
+            <Button color='violet' type='submit'>Jumble Me?</Button>
           </form>
           <br />
       </div>
