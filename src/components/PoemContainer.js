@@ -38,15 +38,17 @@ class PoemContainer extends Component {
           const poemListUpdated = []
           for (let poem of poems){
             poemListUpdated.push(poem)
-            // this.props.setCurrentPoem(poem)
-            this.props.setPoemList(poemListUpdated)
-            this.props.setPoemListFilter(poemListUpdated)
-            // this.props.setDisplayType("")
+            this.props.setCurrentPoem(poem)
           }
+          this.props.setPoemList(poemListUpdated)
+          this.props.setPoemListFilter(poemListUpdated)
         })
       }
     }
   }
+
+
+
 
   render() {
     return (
