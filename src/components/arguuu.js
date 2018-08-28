@@ -1,69 +1,101 @@
-import React, { Component, Fragment } from 'react';
-import { Link } from 'react-router-dom';
-import Adapter from '../Adapter'
-import { connect } from "react-redux";
-import { clearMarkovOutputTitle, clearMarkov, setMarkovOutput  } from '../actions/index'
+import React, { Component } from 'react';
+import '../App.css';
+import Sidebar from './Sidebar'
+import CreatePoemForm from './CreatePoemForm'
+import DisplayPoem from './DisplayPoem'
+import { connect } from "react-redux"
+import UpdatePoemForm from './UpdatePoemForm'
+import MarkovMaker from './MarkovMaker'
+import MarkovMade from './MarkovMade'
+import {Grid, Segment} from 'semantic-ui-react'
 import { withRouter } from 'react-router-dom'
+import Adapter from '../Adapter'
+import { setPoemList, setDisplayType, setCurrentPoem } from '../actions/index'
+// import FillerImage from './FillerImage'
 
-class NavBar extends Component {
+class PoemContainer extends Component {
 
-  handleClick = (event) => {
-      // localStorage.removeItem('token')
-      // localStorage.removeItem('user')
-      localStorage.clear();
-      this.props.clearMarkovOutputTitle("")
-      this.props.clearMarkov("")
-      this.props.setMarkovOutput("")
+  renderDisplayType = () => {
+    switch(this.props.displayType) {
+        case "display":
+          return <DisplayPoem />
+        case "create":
+          return <CreatePoemForm />
+        case "update":
+          return <UpdatePoemForm />
+        default:
+          return null
+    }
   }
 
+  componentDidMount() {
+    document.body.className = null
+    if(this.props.currentUser) {
+      if(this.props.poemList !== [])
+      this.props.setDisplayType("")
+      Adapter.getPoems(this.props.currentUser.id)
+      .then( poems => {
+        const poemListUpdated = []
+        for (let poem of poems){
+          poemListUpdated.push(poem)
+          this.props.setCurrentPoem(poem)
+        }
+        this.props.setPoemList(poemListUpdated)
+      })
+    }
 
-
+}
 
   render() {
     return (
-      <div className="ui inverted icon large blue menu" id="navBar" >
-        { Adapter.isLoggedIn() ?
-      <Fragment>
-          <div className="left menu">
-            <Link className="ui basic inverted item" to="/poems" >My Poems</Link>
-            <Link className="ui basic inverted item" to="/community">Community Feed</Link>
-          </div>
-          <div className="right menu">
-            <Link className="ui basic inverted item" to="/" onClick={() =>this.handleClick}>Logout</Link>
-          </div>
-      </Fragment>
-          :
-        <div className="right menu">
-          <Link className="ui basic inverted item" to="/">Login</Link>
-          <Link className="ui basic inverted item" to="/register">Register</Link>
-          <Link className="ui basic inverted item" to="/about">About</Link>
-        </div>
-      }
+      <div>
+      {this.props.currentUser ?
+        <Grid columns={3} divided>
+         <Grid.Row stretched>
+           <Grid.Column centered="true">
+             <Segment><Sidebar /></Segment>
+           </Grid.Column>
+           <Grid.Column>
+             <Segment>{ this.renderDisplayType() }</Segment>
+           </Grid.Column>
+           <Grid.Column>
+             <Segment>  <MarkovMaker /> <MarkovMade /> </Segment>
+           </Grid.Column>
+         </Grid.Row>
+       </Grid>
+       :
+       <h3>Please Register and/or Login </h3>
+     }
       </div>
     )
   }
 }
 
+
+
 function mapStateToProps(state) {
   return {
-    markov: state.markov,
-    markovOutput: state.markovOutput,
-    title: state.title
+    currentUser: state.currentUser,
+    displayType: state.displayType,
+    poemList: state.poemList
   }
 }
 
 function mapDispatchToProps(dispatch) {
-  return {
-    clearMarkov: () => {
-      dispatch(clearMarkov(""))
-    },
-    setMarkovOutput: (markovOutput) => {
-      dispatch(setMarkovOutput(markovOutput))
-    },
-    clearMarkovOutputTitle: (string) => {
-      dispatch(clearMarkovOutputTitle(string))
+    return {
+  setPoemList:(poemsArr) => {
+    dispatch(setPoemList(poemsArr))
+  },
+  setCurrentPoem:(poem) => {
+    dispatch(setCurrentPoem(poem))
+  },
+  setDisplayType:(string) => {
+    dispatch(setDisplayType(string))
     }
   }
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(NavBar))
+
+
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PoemContainer))
