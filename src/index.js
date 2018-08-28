@@ -7,9 +7,12 @@ import { createStore } from 'redux';
 import reducer from "./reducers/reducer"
 import { Provider } from "react-redux"
 import { BrowserRouter } from 'react-router-dom'
+import { devToolsEnhancer } from 'redux-devtools-extension';
 // import 'semantic-ui-css/semantic.min.css'
 
-const store = createStore(reducer)
+const store = createStore(reducer, /* preloadedState, */ devToolsEnhancer(
+  // Specify name here, actionsBlacklist, actionsCreators and other options if needed
+));
 
 ReactDOM.render(<BrowserRouter><Provider store={store}><App /></Provider></BrowserRouter>, document.getElementById('root'));
 registerServiceWorker();
