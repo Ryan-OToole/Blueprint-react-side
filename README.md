@@ -2443,8 +2443,7 @@ In the future, we might start automatically compiling incompatible third-party m
 
 If you have ideas for more “How To” recipes that should be on this page, [let us know](https://github.com/facebookincubator/create-react-app/issues) or [contribute some!](https://github.com/facebookincubator/create-react-app/edit/master/packages/react-scripts/template/README.md) -->
 
-
-
+https://www.arts.gov/sites/default/files/styles/large-620/public/MagneticPoetry_Flickr.jpg?itok=8fVFoz6A
 
 ## Project title
 Jumbler allows user to create, share, and jumble poems.  The jumble feature makes use of a Markov generator, which finds patterns in text input and randomly mixes the patterns up.
