@@ -1,4 +1,4 @@
-This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
+<!-- This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
 You can find the most recent version of this guide [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
@@ -2441,4 +2441,97 @@ In the future, we might start automatically compiling incompatible third-party m
 
 ## Something Missing?
 
-If you have ideas for more “How To” recipes that should be on this page, [let us know](https://github.com/facebookincubator/create-react-app/issues) or [contribute some!](https://github.com/facebookincubator/create-react-app/edit/master/packages/react-scripts/template/README.md)
+If you have ideas for more “How To” recipes that should be on this page, [let us know](https://github.com/facebookincubator/create-react-app/issues) or [contribute some!](https://github.com/facebookincubator/create-react-app/edit/master/packages/react-scripts/template/README.md) -->
+
+
+
+
+## Project title
+Jumbler allows user to create, share, and jumble poems.  The jumble feature makes use of a Markov generator, which finds patterns in text input and randomly mixes the patterns up.
+
+## Motivation
+A Markov generator is an extremely useful tool for creative idea generation.  I constantly used one in grad school for poetry, but found the process of copy and pasting, combining, and sharing poems to be extremely cumbersome.  Jumbler was born out of the frustration and inefficiency i experienced while using various Markov generators.  Jumbler streamlines the the aforementioned processes that i found to be cumbersome.
+
+## Build status
+Build status of continus integration i.e. travis, appveyor etc. Ex. -
+
+[![Build Status](https://travis-ci.org/akashnimare/foco.svg?branch=master)](https://travis-ci.org/akashnimare/foco)
+[![Windows Build Status](https://ci.appveyor.com/api/projects/status/github/akashnimare/foco?branch=master&svg=true)](https://ci.appveyor.com/project/akashnimare/foco/branch/master)
+
+## Code style
+If you're using any code style like xo, standard etc. That will help others while contributing to your project. Ex. -
+
+[![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](https://github.com/feross/standard)
+
+## Screenshots
+Include logo/demo screenshot etc.
+
+## Tech/framework used
+
+<b>Built with</b>
+- [Ruby on Rails]
+- [Javascript]
+- [React]
+- [Redux]
+
+
+## Features
+Full CRUD functionality.  A user can Create, Read, Update, and Delete poems.  Search bar allows users to search for poems by title.  Custom routing allows users access all poems through the community tab.  User can run poems through the Jumbler, and re-run the same poem with a click of the Rejumble button.  User can add external sources to the text input to be jumbled with the click of a button; this helps generate more dynamic output.
+
+## Code Example
+Show what the library does as concisely as possible, developers should be able to figure out **how** your project solves their problem by looking at the code example. Make sure the API you are showing off is obvious, and that your code is short and concise.
+
+## Installation
+Run bundle install.  Run Ruby on Rails backend on port 3000, rails s.  Run React frontend on port 4000, npm start PORT=4000.
+
+{
+  "name": "my-react-blueprint",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "react-redux": "^5.0.7",
+    "react-router": "^4.3.1",
+    "react-router-dom": "^4.3.1",
+    "react-scripts": "1.1.4",
+    "redux": "^4.0.0",
+    "semantic-ui": "^2.3.3",
+    "semantic-ui-react": "^0.82.0"
+  },
+  "scripts": {
+    "start": "PORT=4000 react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "redux-devtools-extension": "^2.13.5"
+  }
+}
+
+
+## API Reference
+
+Depending on the size of the project, if it is small and simple enough the reference docs can be added to the README. For medium size to larger projects it is important to at least provide a link to where the API reference docs live.
+
+## Tests
+Describe and show how to run the tests with code examples.
+
+## How to use?
+link to video demo
+
+## Contribute
+
+Let people know how they can contribute into your project. A [contributing guideline](https://github.com/zulip/zulip-electron/blob/master/CONTRIBUTING.md) will be a big plus.
+
+## Credits
+This site, markomposition, is the best site that i found that utilizes a Markov generator for making poetry.  Markomposition helped me envision how i wanted my app to function.
+http://mariechatfield.com/markomposition/
+
+#### Anything else that seems useful
+
+## License
+A short snippet describing the license (MIT, Apache etc)
+
+MIT © [Yourname]()
