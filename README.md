@@ -2443,7 +2443,7 @@ In the future, we might start automatically compiling incompatible third-party m
 
 If you have ideas for more “How To” recipes that should be on this page, [let us know](https://github.com/facebookincubator/create-react-app/issues) or [contribute some!](https://github.com/facebookincubator/create-react-app/edit/master/packages/react-scripts/template/README.md) -->
 
-https://www.arts.gov/sites/default/files/styles/large-620/public/MagneticPoetry_Flickr.jpg?itok=8fVFoz6A
+
 
 ## Project title
 Jumbler allows user to create, share, and jumble poems.  The jumble feature makes use of a Markov generator, which finds patterns in text input and randomly mixes the patterns up.
@@ -2468,10 +2468,10 @@ Include logo/demo screenshot etc.
 ## Tech/framework used
 
 <b>Built with</b>
-- [Ruby on Rails]
-- [Javascript]
-- [React]
-- [Redux]
+- Ruby on Rails
+- Javascript
+- React
+- Redux
 
 
 ## Features
@@ -2510,15 +2510,8 @@ Run bundle install.  Run Ruby on Rails backend on port 3000, rails s.  Run React
 }
 
 
-## API Reference
-
-Depending on the size of the project, if it is small and simple enough the reference docs can be added to the README. For medium size to larger projects it is important to at least provide a link to where the API reference docs live.
-
-## Tests
-Describe and show how to run the tests with code examples.
-
 ## How to use?
-link to video demo
+[Jumbler](https://www.youtube.com/watch?v=qHk985QTRnY&feature=youtu.be)
 
 ## Contribute
 
@@ -2533,4 +2526,4 @@ http://mariechatfield.com/markomposition/
 ## License
 A short snippet describing the license (MIT, Apache etc)
 
-MIT © [Yourname]()
+MIT © [Ryan O'Toole]()
