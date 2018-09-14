@@ -1,5 +1,5 @@
 ## Jumbler
-![Jumbler Demo Gif](https://ibb.co/bxMcn9)
+[Jumbler Demo Gif](https://ibb.co/bxMcn9)
 Jumbler allows user to create, share, and jumble poems.  The jumble feature makes use of a Markov generator, which finds patterns in text input and randomly mixes the patterns up.
 
 ## Motivation
