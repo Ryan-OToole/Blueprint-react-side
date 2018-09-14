@@ -1,12 +1,11 @@
-## Jumbler
+## Screenshots
 ![Screenshot](https://user-images.githubusercontent.com/35941205/45562301-0fe21200-b818-11e8-80d4-6e470f1b8777.png)
+
+## Jumbler
 Jumbler allows user to create, share, and jumble poems.  The jumble feature makes use of a Markov generator, which finds patterns in text input and randomly mixes the patterns up.
 
 ## Motivation
 Jumbler was born out of the frustration and inefficiency i experienced while using various Markov generators. A Markov generator is an extremely useful tool for creative idea generation.  I constantly used one in grad school for poetry, but found the process of copy and pasting, combining, and sharing poems to be extremely cumbersome.  Jumbler utilizes a Markov generator and streamlines the the aforementioned processes that i found to be so onerous.
-
-## Screenshots
-Include logo/demo screenshot etc.
 
 ## Tech/framework used
 <b>Built with</b>
@@ -17,9 +16,6 @@ Include logo/demo screenshot etc.
 
 ## Features
 Full CRUD functionality.  A user can Create, Read, Update, and Delete poems.  Search bar allows users to search for poems by title.  Custom routing allows users access all poems through the community tab.  User can run poems through the Jumbler, and re-run the same poem with a click of the Rejumble button.  User can add external sources to the text input to be jumbled with the click of a button; this helps generate more dynamic output.
-
-## Code Example
-Show what the library does as concisely as possible, developers should be able to figure out **how** your project solves their problem by looking at the code example. Make sure the API you are showing off is obvious, and that your code is short and concise.
 
 ## Installation
 Run bundle install.  Run Ruby on Rails backend on port 3000, rails s.  Run React frontend on port 4000, npm start PORT=4000.
@@ -53,11 +49,6 @@ Run bundle install.  Run Ruby on Rails backend on port 3000, rails s.  Run React
 ## How to use?
 Demo found [here](https://www.youtube.com/watch?v=qHk985QTRnY&feature=youtu.be)
 
-## Contribute
-Let people know how they can contribute into your project. A [contributing guideline](https://github.com/zulip/zulip-electron/blob/master/CONTRIBUTING.md) will be a big plus.
-
 ## Credits
 This site, markomposition, is the best site that i found that utilizes a Markov generator for making poetry.  Markomposition helped me envision how i wanted my app to function.
 http://mariechatfield.com/markomposition/
-
-MIT © [Ryan O'Toole]()
